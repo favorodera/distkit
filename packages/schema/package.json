@@ -1,0 +1,59 @@
+{
+  "name": "@distkit/schema",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "description": "TypeBox schemas, JSON Schema generation, and registry-building utilities for distkit.",
+  "author": "Favour Emeka <favorodera@mail.com>",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/favorodera",
+  "homepage": "https://github.com/favorodera/distkit#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/favorodera/distkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/favorodera/distkit/issues"
+  },
+  "keywords": [
+    "distkit",
+    "registry",
+    "schema",
+    "typebox"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "files": ["dist"],
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=11.0.0"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm run build",
+    "lint": "eslint . --fix",
+    "schema:generate": "tsx scripts/generate-json-schemas.ts"
+  },
+  "dependencies": {
+    "@clack/prompts": "catalog:vendor",
+    "fs-extra": "catalog:vendor",
+    "pathe": "catalog:vendor",
+    "tinyglobby": "catalog:tooling",
+    "typebox": "catalog:vendor"
+  },
+  "devDependencies": {
+    "@favorodera/eslint-config": "catalog:tooling",
+    "@types/fs-extra": "catalog:tooling",
+    "tsdown": "catalog:tooling",
+    "tsx": "catalog:tooling",
+    "yaml": "catalog:tooling"
+  }
+}

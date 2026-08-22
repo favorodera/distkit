@@ -1,0 +1,9 @@
+{
+  "$schema": "../../schema/json-schemas/component.json",
+  "name": "button",
+  "type": "component",
+  "files": [
+    "packages/ui/src/components/button/button.vue",
+    "packages/ui/src/components/button/index.ts"
+  ]
+}

@@ -1,0 +1,304 @@
+{
+  "type": "object",
+  "required": [
+    "items",
+    "name",
+    "version"
+  ],
+  "properties": {
+    "dependencies": {
+      "type": "object",
+      "properties": {
+        "npmPackages": {
+          "type": "object",
+          "patternProperties": {
+            "^.*$": {
+              "type": "string",
+              "description": "NPM package version range."
+            }
+          },
+          "description": "Installable npm packages.",
+          "minProperties": 1
+        },
+        "utilities": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "description": "Unique kebab-case name of an item within the registry.",
+            "examples": [
+              "input-with-dropdown",
+              "style-picker"
+            ],
+            "minLength": 1,
+            "pattern": "^[a-z][a-z0-9-]*$"
+          },
+          "description": "Utilities the registry depends on.",
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "description": "Utility and/or npm package dependencies this registry may have."
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "allOf": [
+              {
+                "type": "object",
+                "required": [
+                  "$schema",
+                  "name",
+                  "type"
+                ],
+                "properties": {
+                  "$schema": {
+                    "type": "string",
+                    "description": "JSON Schema reference for the item."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Unique kebab-case name of an item within the registry.",
+                    "examples": [
+                      "input-with-dropdown",
+                      "style-picker"
+                    ],
+                    "minLength": 1,
+                    "pattern": "^[a-z][a-z0-9-]*$"
+                  },
+                  "type": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "const": "component"
+                      },
+                      {
+                        "type": "string",
+                        "const": "utility"
+                      }
+                    ],
+                    "description": "Possible types of an item within the registry.",
+                    "examples": [
+                      "component",
+                      "utility"
+                    ]
+                  }
+                },
+                "description": "Common properties every registry item has"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "files",
+                  "type"
+                ],
+                "properties": {
+                  "dependencies": {
+                    "type": "object",
+                    "properties": {
+                      "components": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Unique kebab-case name of an item within the registry.",
+                          "examples": [
+                            "input-with-dropdown",
+                            "style-picker"
+                          ],
+                          "minLength": 1,
+                          "pattern": "^[a-z][a-z0-9-]*$"
+                        },
+                        "description": "Components this component depends on.",
+                        "minItems": 1,
+                        "uniqueItems": true
+                      },
+                      "npmPackages": {
+                        "type": "object",
+                        "patternProperties": {
+                          "^.*$": {
+                            "type": "string",
+                            "description": "NPM package version range."
+                          }
+                        },
+                        "description": "Installable npm packages.",
+                        "minProperties": 1
+                      },
+                      "utilities": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Unique kebab-case name of an item within the registry.",
+                          "examples": [
+                            "input-with-dropdown",
+                            "style-picker"
+                          ],
+                          "minLength": 1,
+                          "pattern": "^[a-z][a-z0-9-]*$"
+                        },
+                        "description": "Utilities this component depends on.",
+                        "minItems": 1,
+                        "uniqueItems": true
+                      }
+                    },
+                    "description": "Component, utility, and/or npm package dependencies this component may have."
+                  },
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "description": "Path to a file of a file based item, relative to the registry base URL.",
+                      "examples": [
+                        "components/button/button.vue",
+                        "utilities/styling.ts"
+                      ],
+                      "minLength": 1
+                    },
+                    "description": "Files that make up the component.",
+                    "minItems": 1,
+                    "uniqueItems": true
+                  },
+                  "type": {
+                    "type": "string",
+                    "const": "component"
+                  }
+                }
+              }
+            ],
+            "description": "A registry component item."
+          },
+          {
+            "allOf": [
+              {
+                "type": "object",
+                "required": [
+                  "$schema",
+                  "name",
+                  "type"
+                ],
+                "properties": {
+                  "$schema": {
+                    "type": "string",
+                    "description": "JSON Schema reference for the item."
+                  },
+                  "name": {
+                    "type": "string",
+                    "description": "Unique kebab-case name of an item within the registry.",
+                    "examples": [
+                      "input-with-dropdown",
+                      "style-picker"
+                    ],
+                    "minLength": 1,
+                    "pattern": "^[a-z][a-z0-9-]*$"
+                  },
+                  "type": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "const": "component"
+                      },
+                      {
+                        "type": "string",
+                        "const": "utility"
+                      }
+                    ],
+                    "description": "Possible types of an item within the registry.",
+                    "examples": [
+                      "component",
+                      "utility"
+                    ]
+                  }
+                },
+                "description": "Common properties every registry item has"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "files",
+                  "type"
+                ],
+                "properties": {
+                  "dependencies": {
+                    "type": "object",
+                    "properties": {
+                      "npmPackages": {
+                        "type": "object",
+                        "patternProperties": {
+                          "^.*$": {
+                            "type": "string",
+                            "description": "NPM package version range."
+                          }
+                        },
+                        "description": "Installable npm packages.",
+                        "minProperties": 1
+                      },
+                      "utilities": {
+                        "type": "array",
+                        "items": {
+                          "type": "string",
+                          "description": "Unique kebab-case name of an item within the registry.",
+                          "examples": [
+                            "input-with-dropdown",
+                            "style-picker"
+                          ],
+                          "minLength": 1,
+                          "pattern": "^[a-z][a-z0-9-]*$"
+                        },
+                        "description": "Utilities this utility depends on.",
+                        "minItems": 1,
+                        "uniqueItems": true
+                      }
+                    },
+                    "description": "Utility and/or npm package dependencies this utility may have."
+                  },
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "description": "Path to a file of a file based item, relative to the registry base URL.",
+                      "examples": [
+                        "components/button/button.vue",
+                        "utilities/styling.ts"
+                      ],
+                      "minLength": 1
+                    },
+                    "description": "Files that make up the utility.",
+                    "minItems": 1,
+                    "uniqueItems": true
+                  },
+                  "type": {
+                    "type": "string",
+                    "const": "utility"
+                  }
+                }
+              }
+            ],
+            "description": "A registry utility item."
+          }
+        ],
+        "description": "Possible item in the registry."
+      },
+      "description": "Items in the registry.",
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the registry.",
+      "examples": [
+        "distkit",
+        "apple-ui"
+      ],
+      "pattern": "^[a-z][a-z0-9-]*$"
+    },
+    "version": {
+      "type": "string",
+      "description": "Version of the registry.",
+      "examples": [
+        "0.0.1"
+      ]
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "The full registry."
+}

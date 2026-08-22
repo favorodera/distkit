@@ -1,0 +1,6 @@
+{
+  "$schema": "../../schema/json-schemas/utility.json",
+  "name": "props",
+  "type": "utility",
+  "files": ["packages/ui/src/utils/props.ts"]
+}

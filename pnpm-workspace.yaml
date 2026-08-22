@@ -1,0 +1,42 @@
+# eslint-disable pnpm/yaml-enforce-settings
+shellEmulator: true
+
+trustPolicy: no-downgrade
+
+packages:
+  - 'packages/**'
+
+catalogs:
+  tooling:
+    '@favorodera/eslint-config': ^1.1.2
+    '@types/fs-extra': ^11.0.4
+    '@types/node': ^26.1.2
+    '@vitest/ui': ^4.1.10
+    eslint: ^10.8.0
+    relizy: ^1.4.9
+    tinyglobby: ^0.2.17
+    tsdown: ^0.22.5
+    tsx: ^4.23.5
+    turbo: ^2.10.10
+    typescript: ^6.0.3
+    vitest: ^4.1.10
+    yaml: ^2.9.0
+  vendor:
+    '@clack/prompts': ^1.7.0
+    c12: 4.0.0-beta.5
+    citty: ^0.2.2
+    fs-extra: ^11.4.0
+    json5: ^2.2.3
+    nypm: ^0.6.9
+    ofetch: ^1.5.1
+    pathe: ^2.0.3
+    typebox: ^1.3.14
+nodeOptions: --max_old_space_size=4096
+
+peerDependencyRules:
+  allowedVersions:
+    typescript: '6'
+    vite: '8'
+
+allowBuilds:
+  esbuild: true
