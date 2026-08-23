@@ -5,6 +5,7 @@ trustPolicy: no-downgrade
 
 packages:
   - 'packages/**'
+  - 'apps/**'
 
 catalogs:
   tooling:

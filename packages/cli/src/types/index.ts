@@ -10,7 +10,7 @@ export interface UserConfig {
   }
 
   /** Configurations for utilities. */
-  utils: {
+  utilities: {
     /** Relative directory for utilities. */
     dir: string
 

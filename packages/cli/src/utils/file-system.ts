@@ -44,7 +44,7 @@ export function resolveItemInstallDir(type: ItemType, config: UserConfig) {
       return config.components.dir
     }
     case 'utility': {
-      return config.utils.dir
+      return config.utilities.dir
     }
     default: {
       throw new Error(`Cannot resolve install directory for "${type}"`)

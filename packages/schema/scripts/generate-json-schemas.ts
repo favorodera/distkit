@@ -40,10 +40,12 @@ const TSSchemasEntries = [
 
 intro('Generating JSON schemas')
 
-const spin = spinner()
+const spin = spinner({
+  cancelMessage: 'Operation cancelled',
+  errorMessage: 'Operation failed',
+})
 
 spin.start('Preparing JSON schemas generation tasks')
-
 const generationTasks = new Set<Task>()
 
 for (const TSSchemaEntry of TSSchemasEntries) {
@@ -60,7 +62,6 @@ for (const TSSchemaEntry of TSSchemasEntries) {
     title: `Generating "${toRelativePath(TSSchemaEntry.jsonSchemaFilePath)}"`,
   })
 }
-
 spin.stop('JSON schemas generation tasks prepared')
 
 await tasks([...generationTasks])

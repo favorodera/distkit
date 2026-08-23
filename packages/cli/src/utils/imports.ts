@@ -15,7 +15,7 @@ export function rewriteImports(content: string, config: UserConfig) {
       (_, quote, path) => `${quote}${config.components.import}/${path}${quote}`,
     )
     .replaceAll(
-      /(['"])@distkit\/utils\/([^'"]+)\1/g,
-      (_, quote, path) => `${quote}${config.utils.import}/${path}${quote}`,
+      /(['"])@distkit\/utilities\/([^'"]+)\1/g,
+      (_, quote, path) => `${quote}${config.utilities.import}/${path}${quote}`,
     )
 }
