@@ -1,9 +1,9 @@
 {
-  "name": "@distkit/schema",
+  "name": "@distkit/cli",
   "type": "module",
   "version": "0.0.0",
   "private": true,
-  "description": "TypeBox schemas, JSON Schema generation, and registry-building utilities for distkit.",
+  "description": "Command-line interface for resolving, validating, and installing items from a distkit registry.",
   "author": "Favour Emeka <favorodera@gmail.com>",
   "license": "MIT",
   "funding": "https://github.com/sponsors/favorodera",
@@ -18,17 +18,20 @@
   "keywords": [
     "distkit",
     "registry",
-    "schema",
-    "typebox"
+    "cli"
   ],
   "sideEffects": false,
   "exports": {
     ".": "./dist/index.mjs",
+    "./types": "./dist/types.mjs",
     "./package.json": "./package.json"
+  },
+  "bin": {
+    "distkit": "./bin/distkit.mjs"
   },
   "files": ["dist"],
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "engines": {
     "node": ">=22.0.0",
@@ -39,22 +42,27 @@
     "dev": "tsdown --watch",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "pnpm run build",
-    "lint": "eslint . --fix",
-    "generate:json-schemas": "tsx scripts/generate-json-schemas.ts",
-    "build:registry": "tsx scripts/build-registry.ts"
+    "test": "vitest",
+    "test:watch": "vitest watch --ui",
+    "lint": "eslint . --fix"
   },
   "dependencies": {
+    "@clack/prompts": "catalog:vendor",
+    "@distkit/schema": "workspace:*",
+    "c12": "catalog:vendor",
+    "citty": "catalog:vendor",
+    "fs-extra": "catalog:vendor",
+    "json5": "catalog:vendor",
+    "nypm": "catalog:vendor",
+    "ofetch": "catalog:vendor",
+    "pathe": "catalog:vendor",
     "typebox": "catalog:vendor"
   },
   "devDependencies": {
-    "@clack/prompts": "catalog:vendor",
     "@favorodera/eslint-config": "catalog:tooling",
     "@types/fs-extra": "catalog:tooling",
-    "fs-extra": "catalog:vendor",
-    "pathe": "catalog:vendor",
-    "tinyglobby": "catalog:tooling",
+    "@vitest/ui": "catalog:tooling",
     "tsdown": "catalog:tooling",
-    "tsx": "catalog:tooling",
-    "yaml": "catalog:tooling"
+    "vitest": "catalog:tooling"
   }
 }

@@ -39,8 +39,5 @@
     "prepublishOnly": {
       "outputs": []
     },
-    "scripts": {
-      "outputs": []
-    }
   }
 }
