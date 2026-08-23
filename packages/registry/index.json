@@ -1,6 +1,14 @@
 {
   "$schema": "../schema/json-schemas/registry.json",
   "baseUrl": "https://raw.githubusercontent.com/favorodera/distkit/refs/tags/v0.0.0/",
+  "dependencies": {
+    "npmPackages": {
+      "ofetch": "^1.5.1"
+    },
+    "utilities": [
+      "styling"
+    ]
+  },
   "items": [
     {
       "$schema": "../../schema/json-schemas/component.json",
