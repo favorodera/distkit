@@ -1,5 +1,5 @@
-/** Distkit configuration. */
-export interface DistkitConfig {
+/** User project configuration. */
+export interface UserConfig {
   /** Configurations for components. */
   components: {
     /** Relative directory for components. */
