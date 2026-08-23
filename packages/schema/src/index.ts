@@ -13,4 +13,4 @@ export * from './utility'
 
 // Utils
 export * from './utils/compile-schema'
-export * from './utils/generate-json-schemas'
+export * from './utils/to-relative-path'

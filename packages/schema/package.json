@@ -40,18 +40,19 @@
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "pnpm run build",
     "lint": "eslint . --fix",
-    "schema:generate": "tsx scripts/generate-json-schemas.ts"
+    "generate:json-schemas": "tsx scripts/generate-json-schemas.ts",
+    "build:registry": "tsx scripts/build-registry.ts"
   },
   "dependencies": {
-    "@clack/prompts": "catalog:vendor",
-    "fs-extra": "catalog:vendor",
-    "pathe": "catalog:vendor",
-    "tinyglobby": "catalog:tooling",
     "typebox": "catalog:vendor"
   },
   "devDependencies": {
+    "@clack/prompts": "catalog:vendor",
     "@favorodera/eslint-config": "catalog:tooling",
     "@types/fs-extra": "catalog:tooling",
+    "fs-extra": "catalog:vendor",
+    "pathe": "catalog:vendor",
+    "tinyglobby": "catalog:tooling",
     "tsdown": "catalog:tooling",
     "tsx": "catalog:tooling",
     "yaml": "catalog:tooling"

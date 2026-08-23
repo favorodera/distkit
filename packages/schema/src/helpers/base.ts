@@ -1,11 +1,10 @@
 import { type Static, Type } from 'typebox'
+import { $SchemaSchema } from './$schema'
 import { ItemNameSchema } from './name'
 import { ItemTypeSchema } from './type'
 
 export const ItemBaseSchema = Type.Object({
-  $schema: Type.String({
-    description: 'JSON Schema reference for the item.',
-  }),
+  $schema: $SchemaSchema,
   name: ItemNameSchema,
   type: ItemTypeSchema,
 }, {

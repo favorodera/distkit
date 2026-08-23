@@ -1,4 +1,5 @@
 import { type Static, Type } from 'typebox'
+import { $SchemaSchema } from './helpers/$schema'
 import { ItemSchema } from './helpers/item'
 import { ItemNameSchema } from './helpers/name'
 import { NpmPackagesSchema } from './helpers/npm'
@@ -15,6 +16,11 @@ const RegistryDependenciesSchema = Type.Object({
 })
 
 export const RegistrySchema = Type.Object({
+  $schema: $SchemaSchema,
+  baseUrl: Type.String({
+    description: 'Base URL for the registry deliverables.',
+    format: 'uri-reference',
+  }),
   dependencies: Type.Optional(RegistryDependenciesSchema),
   items: Type.Array(ItemSchema, {
     description: 'Items in the registry.',

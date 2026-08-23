@@ -1,11 +1,28 @@
 {
   "type": "object",
   "required": [
+    "$schema",
+    "baseUrl",
     "items",
     "name",
     "version"
   ],
   "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "A JSON Schema reference.",
+      "examples": [
+        "https://json-schema.org/draft/2020-12/schema",
+        "json-schemas/registry.json",
+        "json-schemas/component.json",
+        "json-schemas/utility.json"
+      ]
+    },
+    "baseUrl": {
+      "type": "string",
+      "description": "Base URL for the registry deliverables.",
+      "format": "uri-reference"
+    },
     "dependencies": {
       "type": "object",
       "properties": {
@@ -55,7 +72,13 @@
                 "properties": {
                   "$schema": {
                     "type": "string",
-                    "description": "JSON Schema reference for the item."
+                    "description": "A JSON Schema reference.",
+                    "examples": [
+                      "https://json-schema.org/draft/2020-12/schema",
+                      "json-schemas/registry.json",
+                      "json-schemas/component.json",
+                      "json-schemas/utility.json"
+                    ]
                   },
                   "name": {
                     "type": "string",
@@ -179,7 +202,13 @@
                 "properties": {
                   "$schema": {
                     "type": "string",
-                    "description": "JSON Schema reference for the item."
+                    "description": "A JSON Schema reference.",
+                    "examples": [
+                      "https://json-schema.org/draft/2020-12/schema",
+                      "json-schemas/registry.json",
+                      "json-schemas/component.json",
+                      "json-schemas/utility.json"
+                    ]
                   },
                   "name": {
                     "type": "string",

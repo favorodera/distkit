@@ -1,10 +1,11 @@
+import { intro, note, outro, spinner, type Task, tasks } from '@clack/prompts'
+import fsExtra from 'fs-extra'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'pathe'
 import {
   ComponentSchema,
-  generateJSONSchemas,
   RegistrySchema,
-  type TSSchemaEntry,
+  toRelativePath,
   UtilitySchema,
 } from '../src'
 
@@ -22,7 +23,7 @@ function resolveJsonSchemaPath(name: string) {
 }
 
 /** Array of JSON schema entries. */
-const schemas: Array<TSSchemaEntry> = [
+const TSSchemasEntries = [
   {
     jsonSchemaFilePath: resolveJsonSchemaPath('component'),
     tsSchema: ComponentSchema,
@@ -37,4 +38,36 @@ const schemas: Array<TSSchemaEntry> = [
   },
 ]
 
-await generateJSONSchemas(schemas)
+intro('Generating JSON schemas')
+
+const spin = spinner()
+
+spin.start('Preparing JSON schemas generation tasks')
+
+const generationTasks = new Set<Task>()
+
+for (const TSSchemaEntry of TSSchemasEntries) {
+  generationTasks.add({
+    async task() {
+      await fsExtra.outputJSON(
+        TSSchemaEntry.jsonSchemaFilePath,
+        TSSchemaEntry.tsSchema,
+        { spaces: 2 },
+      )
+
+      return `"${toRelativePath(TSSchemaEntry.jsonSchemaFilePath)}" schema generated`
+    },
+    title: `Generating "${toRelativePath(TSSchemaEntry.jsonSchemaFilePath)}"`,
+  })
+}
+
+spin.stop('JSON schemas generation tasks prepared')
+
+await tasks([...generationTasks])
+
+note(
+  TSSchemasEntries.map(TSSchemaEntry => toRelativePath(TSSchemaEntry.jsonSchemaFilePath)).join('\n'),
+  `${TSSchemasEntries.length} JSON schemas generated`,
+)
+
+outro('JSON schemas generated')

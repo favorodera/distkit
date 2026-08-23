@@ -78,9 +78,19 @@ importers:
 
   packages/schema:
     dependencies:
+      typebox:
+        specifier: catalog:vendor
+        version: 1.3.16
+    devDependencies:
       '@clack/prompts':
         specifier: catalog:vendor
         version: 1.7.0
+      '@favorodera/eslint-config':
+        specifier: catalog:tooling
+        version: 1.1.2(@typescript-eslint/eslint-plugin@8.67.0(@typescript-eslint/parser@8.67.0(eslint@10.9.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@10.9.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(@typescript-eslint/parser@8.67.0(eslint@10.9.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(@vue/compiler-sfc@3.5.41)(eslint@10.9.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(tailwindcss@4.3.3)(typescript@6.0.3)
+      '@types/fs-extra':
+        specifier: catalog:tooling
+        version: 11.0.4
       fs-extra:
         specifier: catalog:vendor
         version: 11.4.0
@@ -90,16 +100,6 @@ importers:
       tinyglobby:
         specifier: catalog:tooling
         version: 0.2.17
-      typebox:
-        specifier: catalog:vendor
-        version: 1.3.16
-    devDependencies:
-      '@favorodera/eslint-config':
-        specifier: catalog:tooling
-        version: 1.1.2(@typescript-eslint/eslint-plugin@8.67.0(@typescript-eslint/parser@8.67.0(eslint@10.9.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@10.9.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(@typescript-eslint/parser@8.67.0(eslint@10.9.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(@vue/compiler-sfc@3.5.41)(eslint@10.9.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(tailwindcss@4.3.3)(typescript@6.0.3)
-      '@types/fs-extra':
-        specifier: catalog:tooling
-        version: 11.0.4
       tsdown:
         specifier: catalog:tooling
         version: 0.22.14(tsx@4.23.12)(typescript@6.0.3)
