@@ -1,4 +1,3 @@
-# eslint-disable pnpm/yaml-enforce-settings
 shellEmulator: true
 
 trustPolicy: no-downgrade
@@ -19,7 +18,7 @@ catalogs:
     tsdown: ^0.22.5
     tsx: ^4.23.5
     turbo: ^2.10.10
-    typescript: ^6.0.3
+    typescript: ^7.0.0
     vitest: ^4.1.10
     yaml: ^2.9.0
   vendor:
