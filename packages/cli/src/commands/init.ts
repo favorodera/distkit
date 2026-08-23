@@ -31,12 +31,10 @@ export async function init() {
       const userConfigChoices = await group({
         components: () => group({
           dir: () => text({
-            initialValue: '@/components',
             message: 'Where should components be located? (relative to project root)',
-            placeholder: '@/components',
+            placeholder: 'src/components',
           }),
           import: () => text({
-            initialValue: '@/components',
             message: 'What should the import alias for components be?',
             placeholder: '@/components',
           }),
@@ -44,12 +42,10 @@ export async function init() {
 
         utilities: () => group({
           dir: () => text({
-            initialValue: '@/utils',
             message: 'Where should utilities be located? (relative to project root)',
-            placeholder: '@/utils',
+            placeholder: 'src/utils',
           }),
           import: () => text({
-            initialValue: '@/utils',
             message: 'What should the import alias for utilities be?',
             placeholder: '@/utils',
           }),

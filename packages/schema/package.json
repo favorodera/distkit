@@ -58,5 +58,8 @@
     "tsdown": "catalog:tooling",
     "tsx": "catalog:tooling",
     "yaml": "catalog:tooling"
+  },
+  "inlinedDependencies": {
+    "pathe": "2.0.3"
   }
 }
