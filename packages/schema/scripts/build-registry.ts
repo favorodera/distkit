@@ -63,9 +63,7 @@ spin.stop('Registry item entries compiled')
 
 spin.start('Compiling registry npm dependencies')
 
-const registryNpmDependenciesKeys = [
-  'ofetch'
-]
+const registryNpmDependenciesKeys = ['ofetch']
 
 spin.message('Reading pnpm workspace')
 
