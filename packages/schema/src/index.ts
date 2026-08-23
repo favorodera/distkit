@@ -1,4 +1,5 @@
 // Helper schemas
+export * from './helpers/$schema'
 export * from './helpers/base'
 export * from './helpers/file'
 export * from './helpers/item'
