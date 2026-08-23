@@ -1,5 +1,5 @@
 import { cancel, group, intro, spinner, text } from '@clack/prompts'
-import { compileSchema, type Registry, RegistrySchema } from '@distkit/schema'
+import { compileSchema, RegistrySchema } from '@distkit/schema'
 import { defineCommand } from 'citty'
 import { join } from 'pathe'
 import type { UserConfig } from '../types'
@@ -76,12 +76,15 @@ export async function init() {
       const shouldWriteComponentsDir = await confirmPathOverwrite(userConfigChoicesResolvedPaths.componentsDir)
       const shouldWriteUtilitiesDir = await confirmPathOverwrite(userConfigChoicesResolvedPaths.utilitiesDir)
 
+      // TODO: Remove console
+      console.warn(shouldWriteUserConfig, shouldWriteComponentsDir, shouldWriteUtilitiesDir)
+
       spin.start('Resolving default registry name to source')
       const registrySource = resolveRegistryNameToSource(defaultRegistryName, userConfig)
       spin.stop('Default registry name resolved to source')
 
       spin.start('Compiling registry schema')
-      const compiledRegistrySchema = compileSchema<Registry>(RegistrySchema)
+      const compiledRegistrySchema = compileSchema(RegistrySchema)
       spin.stop('Registry schema compiled')
 
       spin.start('Fetching registry')
@@ -91,6 +94,9 @@ export async function init() {
       spin.start('Parsing and validating registry')
       const registry = compiledRegistrySchema.Parse(rawRegistry)
       spin.stop('Registry parsed and validated')
+
+      // TODO: Remove console
+      console.warn(registry)
     },
   })
 }
