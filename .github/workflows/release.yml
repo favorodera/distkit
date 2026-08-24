@@ -119,7 +119,7 @@ jobs:
           git config --global user.email "favorodera@gmail.com"
 
       - name: Release with Relizy
-        run: pnpm relizy release ${{ needs.validate.outputs.release_arguments }} --yes --no-clean
+        run: pnpm relizy release ${{ needs.validate.outputs.release_arguments }} --yes --no-clean --no-publish
         env:
           RELIZY_GITHUB_TOKEN: ${{ secrets.PAT }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
