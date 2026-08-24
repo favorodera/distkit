@@ -1,0 +1,34 @@
+{
+  "name": "@distkit/playground",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Playground for testing distkit's logics",
+  "author": "Favour Emeka <favorodera@gmail.com>",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/favorodera",
+  "homepage": "https://github.com/favorodera/distkit#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/favorodera/distkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/favorodera/distkit/issues"
+  },
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=11.0.0"
+  },
+  "scripts": {
+    "distkit": "pnpm exec distkit"
+  },
+  "dependencies": {
+    "@distkit/cli": "workspace:*"
+  },
+  "inlinedDependencies": {
+    "pathe": "2.0.3"
+  }
+}
