@@ -31,23 +31,43 @@ export async function init() {
       const userConfigChoices = await group({
         components: () => group({
           dir: () => text({
+            initialValue: 'src/components',
             message: 'Where should components be located? (relative to project root)',
-            placeholder: 'src/components',
+            validate(value) {
+              if (!value) {
+                return 'Components directory is required.'
+              }
+            },
           }),
           import: () => text({
+            initialValue: '@/components',
             message: 'What should the import alias for components be?',
-            placeholder: '@/components',
+            validate(value) {
+              if (!value) {
+                return 'Components import alias is required.'
+              }
+            },
           }),
         }),
 
         utilities: () => group({
           dir: () => text({
+            initialValue: 'src/utils',
             message: 'Where should utilities be located? (relative to project root)',
-            placeholder: 'src/utils',
+            validate(value) {
+              if (!value) {
+                return 'Utilities directory is required.'
+              }
+            },
           }),
           import: () => text({
+            initialValue: '@/utils',
             message: 'What should the import alias for utilities be?',
-            placeholder: '@/utils',
+            validate(value) {
+              if (!value) {
+                return 'Utilities import alias is required.'
+              }
+            },
           }),
         }),
       }, {
