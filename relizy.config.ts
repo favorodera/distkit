@@ -5,7 +5,7 @@ const packages = ['packages/*']
 export default defineConfig({
   hooks: {
     'before:commit-and-tag': 'git add ./registry',
-    'success:bump': 'pnpm --filter=@distkit/schema generate:json-schemas && pnpm --filter=@distkit/schema build:registry',
+    'success:bump': `pnpm --filter='@distkit/schema' generate:json-schemas && pnpm --filter='@distkit/schema' build:registry`,
   },
   monorepo: {
     includePrivates: true,
