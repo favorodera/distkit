@@ -3,11 +3,11 @@ import { compileSchema, RegistrySchema } from '@distkit/schema'
 import { defineCommand } from 'citty'
 import fsExtra from 'fs-extra/esm'
 import { join } from 'pathe'
-import type { UserConfig } from '../types'
+import type { GeneratedItemKey, ResolvedRegistryItem, UserConfig } from '../types'
 import { generateUserConfig } from '../utils/config'
 import { defaultRegistryIndexUrl, defaultRegistryName, userConfigFileName } from '../utils/constants'
-import { confirmPathOverwrite, toRelativePath } from '../utils/file-system'
-import { fetchRegistry, resolveRegistryNameToSource } from '../utils/registry'
+import { confirmItemsFilesOverwrite, confirmPathOverwrite, toRelativePath } from '../utils/file-system'
+import { fetchRegistry, generateItemKey, installRegistryItems, resolveRegistryItems, resolveRegistryNameToSource } from '../utils/registry'
 
 /**
  * Initializes DistKit in the current project.
@@ -99,9 +99,6 @@ export async function init() {
       const shouldWriteComponentsDir = await confirmPathOverwrite(userConfigChoicesResolvedPaths.componentsDir)
       const shouldWriteUtilitiesDir = await confirmPathOverwrite(userConfigChoicesResolvedPaths.utilitiesDir)
 
-      // TODO: Remove console
-      console.warn(shouldWriteUserConfig, shouldWriteComponentsDir, shouldWriteUtilitiesDir)
-
       spin.start('Resolving default registry name to source')
       const registrySource = resolveRegistryNameToSource(defaultRegistryName, userConfig)
       spin.stop('Default registry name resolved to source')
@@ -118,7 +115,33 @@ export async function init() {
       const registry = compiledRegistrySchema.Parse(rawRegistry)
       spin.stop('Registry parsed and validated')
 
-      console.warn(registry)
+      spin.start('Resolving registry dependencies')
+      spin.message('Resolving utilities dependencies')
+      const rawUtilities = (registry?.dependencies?.utilities || []).map(name => ({
+        name,
+        type: 'utility' as const,
+      }))
+      const resolvedUtilities = resolveRegistryItems(rawUtilities, registry)
+      spin.message('Resolved utilities dependencies')
+
+      spin.message('Resolving npm packages dependencies')
+      const rawNpmPackages = Object.entries(registry?.dependencies?.npmPackages || {})
+      const resolvedNpmPackages = new Map<GeneratedItemKey, ResolvedRegistryItem>()
+
+      for (const [name, version] of rawNpmPackages) {
+        const npmPackageKey = generateItemKey('npmPackage', name)
+        resolvedNpmPackages.set(npmPackageKey, {
+          name,
+          type: 'npmPackage' as const,
+          version,
+        })
+      }
+      spin.message('Resolved npm packages dependencies')
+
+      const itemsToInstall: Array<ResolvedRegistryItem> = [...resolvedUtilities.values(), ...resolvedNpmPackages.values()]
+      spin.stop(`Resolved registry dependencies`)
+
+      const registryDependenciesShouldWriteChoices = await confirmItemsFilesOverwrite(resolvedUtilities.values(), userConfig)
 
       await tasks([
         {
@@ -151,6 +174,21 @@ export async function init() {
             await fsExtra.ensureDir(userConfigChoicesResolvedPaths.utilitiesDir)
           },
           title: 'Creating utilities directory',
+        },
+
+        {
+          async task(message) {
+            await installRegistryItems(
+              itemsToInstall,
+              registry,
+              userConfig,
+              registryDependenciesShouldWriteChoices,
+              message,
+            )
+
+            return `Registry items installed successfully`
+          },
+          title: 'Installing registry items',
         },
 
       ])

@@ -84,7 +84,7 @@ const rawRegistry: Registry = {
   baseUrl: `https://raw.githubusercontent.com/favorodera/distkit/refs/tags/v${version}/`,
   dependencies: {
     npmPackages: Object.fromEntries(registryNPMPackages),
-    utilities: ['styling'],
+    utilities: ['props'],
   },
   items: [...registryItemEntries],
   name: 'distkit',

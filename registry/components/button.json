@@ -1,9 +1,12 @@
 {
-  "$schema": "../../schema/json-schemas/component.json",
+  "$schema": "../../packages/schema/json-schemas/component.json",
   "name": "button",
   "type": "component",
-  "files": [
-    "packages/ui/src/components/button/button.vue",
-    "packages/ui/src/components/button/index.ts"
-  ]
+  "files": ["store/components/button/index.ts"],
+  "dependencies": {
+    "npmPackages": {
+      "notform": "^2.2.2"
+    },
+    "utilities": ["props"]
+  }
 }

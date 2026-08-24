@@ -1,3 +1,5 @@
+import type { Component, ItemType, Utility } from '@distkit/schema'
+
 /** User project configuration. */
 export interface UserConfig {
   /** Configurations for components. */
@@ -21,3 +23,16 @@ export interface UserConfig {
   /** Named registry sources (name → index URL). */
   registries: Record<string, string>
 }
+
+/** Union type for generated item keys. */
+export type GeneratedItemKey = `${'npmPackage' | ItemType}:${string}`
+
+/** Union type for resolved registry items including npm packages. */
+export type ResolvedRegistryItem = (
+  | Pick<Component, 'files' | 'type'>
+  | Pick<Utility, 'files' | 'type'>
+  | {
+    type: 'npmPackage'
+    version: string
+  })
+  & { name: string }

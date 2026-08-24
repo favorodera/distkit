@@ -2,7 +2,7 @@ import type { Item, ItemType } from '@distkit/schema'
 import { cancel, confirm, isCancel } from '@clack/prompts'
 import fsExtra from 'fs-extra'
 import { basename, join, relative } from 'pathe'
-import type { UserConfig } from '../types'
+import type { ResolvedRegistryItem, UserConfig } from '../types'
 
 /**
  * Converts an absolute path to a relative path.
@@ -88,13 +88,18 @@ export function resolveItemFileInstallPath(item: Omit<Item, '$schema'>, filePath
 
 /**
  * Confirms whether a user wants to overwrite all files for an item
+ * @internal
  * @param item The item to confirm overwriting for
  * @param config The user configuration
+ * @param userDecisions The user decisions map
  * @returns A map of file paths to boolean overwrite decisions
  */
-export async function confirmItemFilesOverwrite(item: Item, config: UserConfig) {
+async function confirmItemFilesOverwrite(
+  item: ResolvedRegistryItem,
+  config: UserConfig,
+  userDecisions: Map<string, boolean>,
+) {
   const cwd = process.cwd()
-  const userDecisions = new Map<string, boolean>()
 
   switch (item.type) {
     case 'component': {
@@ -122,6 +127,22 @@ export async function confirmItemFilesOverwrite(item: Item, config: UserConfig) 
       }
       break
     }
+  }
+
+  return userDecisions
+}
+
+/**
+ * Recursively confirms whether a user wants to overwrite all files for a list of items
+ * @param items The items to confirm overwriting for
+ * @param config The user configuration
+ * @returns A map of file paths to boolean overwrite decisions
+ */
+export async function confirmItemsFilesOverwrite(items: Iterable<ResolvedRegistryItem>, config: UserConfig) {
+  const userDecisions = new Map<string, boolean>()
+
+  for (const item of items) {
+    await confirmItemFilesOverwrite(item, config, userDecisions)
   }
 
   return userDecisions

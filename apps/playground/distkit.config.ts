@@ -6,7 +6,7 @@ export default defineConfig({
     import: '@/components',
   },
   registries: {
-    distkit: 'https://raw.githubusercontent.com/favorodera/distkit/refs/tags/v0.0.0/registry/index.json',
+    distkit: 'https://raw.githubusercontent.com/favorodera/distkit/refs/tags/v0.0.1-alpha.0/registry/index.json',
   },
   utilities: {
     dir: 'src/utils',

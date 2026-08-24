@@ -1,7 +1,7 @@
-import type { Component, Item, ItemBase, ItemType, Registry, Utility } from '@distkit/schema'
+import type { Item, ItemBase, ItemType, Registry } from '@distkit/schema'
 import fsExtra from 'fs-extra'
 import { basename } from 'pathe'
-import type { UserConfig } from '../types'
+import type { GeneratedItemKey, ResolvedRegistryItem, UserConfig } from '../types'
 import { resolveItemFileInstallPath } from './file-system'
 import { rewriteImports } from './imports'
 import { jsonFetch, textFetch } from './network'
@@ -41,34 +41,14 @@ export async function fetchRegistry(source: ReturnType<typeof resolveRegistryNam
 }
 
 /**
- * Union type for generated item keys.
- * @internal
- */
-type GeneratedItemKey = `${'npmPackage' | ItemType}:${string}`
-
-/**
  * Generates a unique key for an item or npm package based on its type and name.
- * @internal
  * @param type The type of the item or npm package.
  * @param name The name of the item or npm package.
  * @returns The unique key for the item or npm package.
  */
-function generateItemKey(type: 'npmPackage' | ItemType, name: string): GeneratedItemKey {
+export function generateItemKey(type: 'npmPackage' | ItemType, name: string): GeneratedItemKey {
   return `${type}:${name}`
 }
-
-/**
- *Union type for resolved registry items including npm packages.
- * @internal
- */
-type ResolvedRegistryItem = (
-  | Pick<Component, 'files' | 'type'>
-  | Pick<Utility, 'files' | 'type'>
-  | {
-    type: 'npmPackage'
-    version: string
-  })
-  & { name: string }
 
 /**
  * Recursively resolves an item and its transitive dependencies.
@@ -151,7 +131,7 @@ function resolveRegistryItem(
  * @param registry The registry containing the items.
  * @returns A map of resolved items including their transitive dependencies.
  */
-export function resolveRegistryItems(items: Array<ItemBase>, registry: Registry) {
+export function resolveRegistryItems(items: Array<Pick<ItemBase, 'name' | 'type'>>, registry: Registry) {
   const resolvedRegistryItems = new Map<GeneratedItemKey, ResolvedRegistryItem>()
 
   // Build a flat lookup map for efficient resolution
