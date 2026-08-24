@@ -80,7 +80,7 @@ spin.stop('Registry npm dependencies compiled')
 
 spin.start('Compiling composite registry index')
 const rawRegistry: Registry = {
-  $schema: '../schema/json-schemas/registry.json',
+  $schema: '../packages/schema/json-schemas/registry.json',
   baseUrl: `https://raw.githubusercontent.com/favorodera/distkit/refs/tags/v${version}/`,
   dependencies: {
     npmPackages: Object.fromEntries(registryNPMPackages),

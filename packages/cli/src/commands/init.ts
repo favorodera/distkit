@@ -1,10 +1,12 @@
-import { cancel, group, intro, spinner, text } from '@clack/prompts'
+import { cancel, group, intro, spinner, tasks, text } from '@clack/prompts'
 import { compileSchema, RegistrySchema } from '@distkit/schema'
 import { defineCommand } from 'citty'
+import fsExtra from 'fs-extra/esm'
 import { join } from 'pathe'
 import type { UserConfig } from '../types'
+import { generateUserConfig } from '../utils/config'
 import { defaultRegistryIndexUrl, defaultRegistryName, userConfigFileName } from '../utils/constants'
-import { confirmPathOverwrite } from '../utils/file-system'
+import { confirmPathOverwrite, toRelativePath } from '../utils/file-system'
 import { fetchRegistry, resolveRegistryNameToSource } from '../utils/registry'
 
 /**
@@ -115,8 +117,40 @@ export async function init() {
       const registry = compiledRegistrySchema.Parse(rawRegistry)
       spin.stop('Registry parsed and validated')
 
-      // TODO: Remove console
-      console.warn(registry)
+      await tasks([
+        {
+          enabled: shouldWriteUserConfig,
+          async task(message) {
+            message('Generating config from choices')
+            const configContent = generateUserConfig(userConfig)
+
+            message('Writing config to disk')
+            await fsExtra.outputFile(userConfigChoicesResolvedPaths.userConfig, configContent)
+
+            return `User config created at ${toRelativePath(userConfigChoicesResolvedPaths.userConfig)}`
+          },
+          title: 'Creating user config',
+        },
+
+        {
+          enabled: shouldWriteComponentsDir,
+          async task() {
+            await fsExtra.ensureDir(userConfigChoicesResolvedPaths.componentsDir)
+
+            return `Components directory created at ${toRelativePath(userConfigChoicesResolvedPaths.componentsDir)}`
+          },
+          title: 'Creating components directory',
+        },
+
+        {
+          enabled: shouldWriteUtilitiesDir,
+          async task() {
+            await fsExtra.ensureDir(userConfigChoicesResolvedPaths.utilitiesDir)
+          },
+          title: 'Creating utilities directory',
+        },
+
+      ])
     },
   })
 }

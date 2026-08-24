@@ -1,5 +1,5 @@
 {
-  "$schema": "../schema/json-schemas/registry.json",
+  "$schema": "../packages/schema/json-schemas/registry.json",
   "baseUrl": "https://raw.githubusercontent.com/favorodera/distkit/refs/tags/v0.0.0/",
   "dependencies": {
     "npmPackages": {
