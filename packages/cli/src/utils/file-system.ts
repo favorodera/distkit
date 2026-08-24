@@ -1,8 +1,18 @@
+import type { Item, ItemType } from '@distkit/schema'
 import { cancel, confirm, isCancel } from '@clack/prompts'
-import { type Item, type ItemType, toRelativePath } from '@distkit/schema'
 import fsExtra from 'fs-extra'
-import { basename, join } from 'pathe'
+import { basename, join, relative } from 'pathe'
 import type { UserConfig } from '../types'
+
+/**
+ * Converts an absolute path to a relative path.
+ * @param target The absolute target path to convert.
+ * @param from The absolute from path to convert from. Defaults to process.cwd().
+ * @returns The relative path.
+ */
+export function toRelativePath(target: string, from: string = process.cwd()) {
+  return relative(from, target)
+}
 
 /**
  * Confirms whether a user wants to overwrite a path

@@ -5,7 +5,8 @@ import { dirname, join } from 'pathe'
 import { glob } from 'tinyglobby'
 import { parse as parseYaml } from 'yaml'
 import { version } from '../package.json'
-import { compileSchema, type Registry, toRelativePath } from '../src'
+import { compileSchema, type Registry } from '../src'
+import { toRelativePath } from '../src/utils/to-relative-path'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 

@@ -14,4 +14,3 @@ export * from './utility'
 
 // Utils
 export * from './utils/compile-schema'
-export * from './utils/to-relative-path'

@@ -5,9 +5,9 @@ import { dirname, join } from 'pathe'
 import {
   ComponentSchema,
   RegistrySchema,
-  toRelativePath,
   UtilitySchema,
 } from '../src'
+import { toRelativePath } from '../src/utils/to-relative-path'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
