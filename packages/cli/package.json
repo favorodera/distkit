@@ -1,7 +1,7 @@
 {
   "name": "@distkit/cli",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.0",
   "private": true,
   "description": "Command-line interface for resolving, validating, and installing items from a distkit registry.",
   "author": "Favour Emeka <favorodera@gmail.com>",
@@ -29,7 +29,9 @@
   "bin": {
     "distkit": "./bin/distkit.mjs"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "publishConfig": {
     "access": "restricted"
   },

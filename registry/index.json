@@ -1,11 +1,13 @@
 {
   "$schema": "../packages/schema/json-schemas/registry.json",
-  "baseUrl": "https://raw.githubusercontent.com/favorodera/distkit/refs/tags/v0.0.0/",
+  "baseUrl": "https://raw.githubusercontent.com/favorodera/distkit/refs/tags/v0.0.1-alpha.0/",
   "dependencies": {
     "npmPackages": {
       "ofetch": "^1.5.1"
     },
-    "utilities": ["styling"]
+    "utilities": [
+      "styling"
+    ]
   },
   "items": [
     {
@@ -21,9 +23,11 @@
       "$schema": "../../schema/json-schemas/utility.json",
       "name": "props",
       "type": "utility",
-      "files": ["packages/ui/src/utils/props.ts"]
+      "files": [
+        "packages/ui/src/utils/props.ts"
+      ]
     }
   ],
   "name": "distkit",
-  "version": "0.0.0"
+  "version": "0.0.1-alpha.0"
 }
