@@ -36,6 +36,5 @@ export function generateUserConfig(config: UserConfig) {
 
   return `import { defineConfig } from '@distkit/core'
 
-export default defineConfig(${userConfigContent})
-}`
+export default defineConfig(${userConfigContent})`
 }

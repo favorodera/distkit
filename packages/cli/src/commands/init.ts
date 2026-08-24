@@ -81,10 +81,11 @@ export async function init() {
 
       // Compile user's config choices into a config object.
       const userConfig: UserConfig = {
-        ...userConfigChoices,
+        components: userConfigChoices.components,
         registries: {
           [defaultRegistryName]: defaultRegistryIndexUrl,
         },
+        utilities: userConfigChoices.utilities,
       }
 
       const userConfigChoicesResolvedPaths = {
