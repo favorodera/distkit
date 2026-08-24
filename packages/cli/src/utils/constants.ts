@@ -6,7 +6,7 @@ import { version } from '../../package.json'
 export const defaultRegistryName = 'distkit'
 
 /** The default registry index URL. */
-export const defaultRegistryIndexUrl = `https://raw.githubusercontent.com/favorodera/distkit/refs/tags/v${version}/packages/registry/src/index.json`
+export const defaultRegistryIndexUrl = `https://raw.githubusercontent.com/favorodera/distkit/refs/tags/v${version}/registry/index.json`
 
 /** The name of the user configuration file. */
 export const userConfigFileName = 'distkit.config.ts'
