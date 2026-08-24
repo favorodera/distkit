@@ -117,6 +117,8 @@ export async function init() {
       const registry = compiledRegistrySchema.Parse(rawRegistry)
       spin.stop('Registry parsed and validated')
 
+      console.warn(registry)
+
       await tasks([
         {
           enabled: shouldWriteUserConfig,
