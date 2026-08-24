@@ -1,5 +1,22 @@
 # Changelog
 
+## v0.0.1-alpha.0...v0.1.0-alpha.0
+
+[compare changes](https://github.com/favorodera/distkit/compare/v0.0.1-alpha.0...v0.1.0-alpha.0)
+
+### Added
+
+- **cli:** Resolve and install registry items ([57f9f8e](https://github.com/favorodera/distkit/commit/57f9f8e))
+
+  - Resolve registry utilities and npm dependencies
+  - Prompt for file overwrites across multiple items
+  - Install registry dependencies during initialization
+
+### ❤️ Contributors
+
+- Favour Emeka ([@favorodera](https://github.com/favorodera))
+
+
 ## v0.0.0...v0.0.1-alpha.0
 
 [compare changes](https://github.com/favorodera/distkit/compare/v0.0.0...v0.0.1-alpha.0)

@@ -1,29 +1,40 @@
 {
   "$schema": "../packages/schema/json-schemas/registry.json",
-  "baseUrl": "https://raw.githubusercontent.com/favorodera/distkit/refs/tags/v0.0.1-alpha.0/",
+  "baseUrl": "https://raw.githubusercontent.com/favorodera/distkit/refs/tags/v0.1.0-alpha.0/",
   "dependencies": {
     "npmPackages": {
       "ofetch": "^1.5.1"
     },
-    "utilities": ["props"]
+    "utilities": [
+      "props"
+    ]
   },
   "items": [
     {
-      "$schema": "../../schema/json-schemas/component.json",
+      "$schema": "../../packages/schema/json-schemas/component.json",
       "name": "button",
       "type": "component",
       "files": [
-        "packages/ui/src/components/button/button.vue",
-        "packages/ui/src/components/button/index.ts"
-      ]
+        "store/components/button/index.ts"
+      ],
+      "dependencies": {
+        "npmPackages": {
+          "notform": "^2.2.2"
+        },
+        "utilities": [
+          "props"
+        ]
+      }
     },
     {
-      "$schema": "../../schema/json-schemas/utility.json",
+      "$schema": "../../packages/schema/json-schemas/utility.json",
       "name": "props",
       "type": "utility",
-      "files": ["packages/ui/src/utils/props.ts"]
+      "files": [
+        "store/utilities/props.ts"
+      ]
     }
   ],
   "name": "distkit",
-  "version": "0.0.1-alpha.0"
+  "version": "0.1.0-alpha.0"
 }
