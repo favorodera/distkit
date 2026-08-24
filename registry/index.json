@@ -5,9 +5,7 @@
     "npmPackages": {
       "ofetch": "^1.5.1"
     },
-    "utilities": [
-      "styling"
-    ]
+    "utilities": ["styling"]
   },
   "items": [
     {
@@ -23,9 +21,7 @@
       "$schema": "../../schema/json-schemas/utility.json",
       "name": "props",
       "type": "utility",
-      "files": [
-        "packages/ui/src/utils/props.ts"
-      ]
+      "files": ["packages/ui/src/utils/props.ts"]
     }
   ],
   "name": "distkit",

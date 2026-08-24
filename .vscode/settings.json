@@ -238,12 +238,8 @@
   "eslint.runtime": "node",
   "mdc.enableComponentMetadataCompletions": true,
   "mdc.enableFormatting": true,
-  "tailwindCSS.classAttributes": [
-    "class",
-  ],
-  "tailwindCSS.classFunctions": [
-    "tv"
-  ],
+  "tailwindCSS.classAttributes": ["class"],
+  "tailwindCSS.classFunctions": ["tv"],
   "tailwindCSS.experimental.classRegex": [
     [
       "Classes\\s*=\\s*computed\\(\\(\\)\\s*=>\\s*([\\s\\S]+?)\\)",
@@ -341,5 +337,5 @@
   "todo-tree.filtering.excludeGlobs": [
     "**/node_modules/*/**",
     "**/CHANGELOG.md"
-  ],
+  ]
 }

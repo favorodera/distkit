@@ -10,7 +10,7 @@ import { toRelativePath } from '../src/utils/to-relative-path'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
-const registryDir = join(__dirname, '..', '..', 'registry')
+const registryDir = join(__dirname, '..', '..', '..', 'registry')
 const registryIndexJSONSchemaPath = join(__dirname, '..', 'json-schemas', 'registry.json')
 const registryBuildOutputPath = join(registryDir, 'index.json')
 const pnpmWorkspaceYamlPath = join(__dirname, '../../../pnpm-workspace.yaml')
