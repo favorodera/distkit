@@ -69,7 +69,7 @@ export function resolveItemInstallDir(type: ItemType, config: UserConfig) {
  * @param config The user configuration
  * @returns The install path for the item's file
  */
-export function resolveItemFileInstallPath(item: Item, filePath: string, config: UserConfig) {
+export function resolveItemFileInstallPath(item: Omit<Item,'$schema'>, filePath: string, config: UserConfig) {
   const cwd = process.cwd()
   const installDir = resolveItemInstallDir(item.type, config)
   const fileName = basename(filePath)
