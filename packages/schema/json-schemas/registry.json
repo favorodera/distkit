@@ -1,7 +1,6 @@
 {
   "type": "object",
   "required": [
-    "$schema",
     "baseUrl",
     "items",
     "name",
@@ -65,7 +64,6 @@
               {
                 "type": "object",
                 "required": [
-                  "$schema",
                   "name",
                   "type"
                 ],
@@ -195,7 +193,6 @@
               {
                 "type": "object",
                 "required": [
-                  "$schema",
                   "name",
                   "type"
                 ],
