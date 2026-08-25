@@ -12,10 +12,10 @@ export const defaultRegistryIndexUrl = `https://raw.githubusercontent.com/favoro
 export const userConfigFileName = 'distkit.config.ts'
 
 /** The base name of the user configuration file. */
-export const userConfigFileBaseName = basename(userConfigFileName, '.ts')
+export const userConfigFileBaseName = basename(userConfigFileName, '.config.ts')
 
 /** Common arguments for commands. */
-export const commonArgs: Record<string, EnumArgDef | PositionalArgDef | StringArgDef> = {
+export const commonArgs = {
   registry: {
     alias: 'r',
     default: defaultRegistryName,
@@ -24,4 +24,4 @@ export const commonArgs: Record<string, EnumArgDef | PositionalArgDef | StringAr
     type: 'string',
     valueHint: 'registry-name',
   },
-}
+} satisfies Record<string, EnumArgDef | PositionalArgDef | StringArgDef> 

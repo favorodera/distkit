@@ -179,6 +179,7 @@ export async function init() {
         },
 
         {
+          enabled: itemsToInstall.length > 0,
           async task(message) {
             await installRegistryItems(
               itemsToInstall,

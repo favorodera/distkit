@@ -26,10 +26,8 @@
     "distkit": "pnpm exec distkit"
   },
   "dependencies": {
-    "@distkit/cli": "workspace:*",
+    "@distkit/core": "workspace:*",
+    "notform": "^2.2.2",
     "ofetch": "^1.5.1"
-  },
-  "inlinedDependencies": {
-    "pathe": "2.0.3"
   }
 }

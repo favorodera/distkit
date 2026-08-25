@@ -1,0 +1,53 @@
+{
+  "name": "@distkit/core",
+  "type": "module",
+  "version": "0.1.0-alpha.0",
+  "private": true,
+  "description": "Foundation for your Vue documentation.",
+  "author": "Favour Emeka <favorodera@mail.com>",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/favorodera",
+  "homepage": "https://nka.vercel.app/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/favorodera/nka.git"
+  },
+  "bugs": {
+    "url": "https://github.com/favorodera/nka/issues"
+  },
+  "keywords": [
+    "nka",
+    "docs",
+    "core"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": "./dist/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "distkit": "./bin/distkit.mjs"
+  },
+  "files": ["dist"],
+  "publishConfig": {
+    "access": "restricted"
+  },
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=11.0.0"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm run build",
+    "lint": "eslint . --fix"
+  },
+  "dependencies": {
+    "@distkit/cli": "workspace:*"
+  },
+  "devDependencies": {
+    "@favorodera/eslint-config": "catalog:tooling",
+    "tsdown": "catalog:tooling"
+  }
+}
