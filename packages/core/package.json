@@ -1,7 +1,7 @@
 {
   "name": "@distkit/core",
   "type": "module",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0",
   "private": true,
   "description": "defineConfig() and the distkit CLI binary — the package consumers actually install.",
   "author": "Favour Emeka <favorodera@gmail.com>",
