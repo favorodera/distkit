@@ -5,7 +5,7 @@
 
   <p>
     <a href="./LICENSE"><img src="https://img.shields.io/github/license/favorodera/distkit.svg?style=plastic&label=License" alt="License"></a>
-    <img alt="Version" src="https://img.shields.io/github/package-json/v/favorodera/distkit?style=plastic&label=NPM%20Version">
+    <img alt="Version" src="https://img.shields.io/github/package-json/v/favorodera/distkit?style=plastic&label=Version">
   </p>
 
   <p>
