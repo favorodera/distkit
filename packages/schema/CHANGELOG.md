@@ -1,5 +1,44 @@
 # Changelog
 
+## v0.1.0-alpha.0...v0.1.0-alpha.1
+
+[compare changes](https://github.com/favorodera/distkit/compare/v0.1.0-alpha.0...v0.1.0-alpha.1)
+
+### Added
+
+- **cli:** Add utility subcommand ([6d87544](https://github.com/favorodera/distkit/commit/6d87544))
+
+  - Add `add utility` subcommand to CLI
+  - Update documentation across repository
+  - Improve error message formatting in CLI utilities
+
+
+### Fixed
+
+- **schema:** Make $schema optional across schemas ([5e58c95](https://github.com/favorodera/distkit/commit/5e58c95))
+
+  - Allow schemas without required $schema field
+  - Prevent validation errors on omitted property
+
+
+### Tests
+
+- **cli:** Add unit tests for utility functions ([c00f365](https://github.com/favorodera/distkit/commit/c00f365))
+
+  - Make $schema optional in item and registry schemas
+  - Simplify item type signatures across CLI utils
+  - Add unit tests for file system, registry, imports
+
+
+### Styling
+
+- **registry:** Reformat arrays in index.json ([ff4f823](https://github.com/favorodera/distkit/commit/ff4f823))
+
+### ❤️ Contributors
+
+- Favour Emeka ([@favorodera](https://github.com/favorodera))
+
+
 ## v0.0.1-alpha.0...v0.1.0-alpha.0
 
 [compare changes](https://github.com/favorodera/distkit/compare/v0.0.1-alpha.0...v0.1.0-alpha.0)

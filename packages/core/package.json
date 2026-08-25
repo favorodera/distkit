@@ -1,7 +1,7 @@
 {
   "name": "@distkit/core",
   "type": "module",
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0-alpha.1",
   "private": true,
   "description": "defineConfig() and the distkit CLI binary — the package consumers actually install.",
   "author": "Favour Emeka <favorodera@gmail.com>",
@@ -10,9 +10,11 @@
   "homepage": "https://github.com/favorodera/distkit#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/favorodera/distkit.git" 
+    "url": "git+https://github.com/favorodera/distkit.git"
   },
-  "bugs": { "url": "https://github.com/favorodera/distkit/issues" },
+  "bugs": {
+    "url": "https://github.com/favorodera/distkit/issues"
+  },
   "keywords": [
     "distkit",
     "config",
@@ -26,7 +28,9 @@
   "bin": {
     "distkit": "./bin/distkit.mjs"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "publishConfig": {
     "access": "restricted"
   },

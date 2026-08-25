@@ -320,7 +320,9 @@
     "version": {
       "type": "string",
       "description": "Version of the registry.",
-      "examples": ["0.0.1"]
+      "examples": [
+        "0.0.1"
+      ]
     }
   },
   "$schema": "https://json-schema.org/draft/2020-12/schema",
