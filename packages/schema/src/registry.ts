@@ -16,7 +16,7 @@ const RegistryDependenciesSchema = Type.Object({
 })
 
 export const RegistrySchema = Type.Object({
-  $schema: $SchemaSchema,
+  $schema: Type.Optional($SchemaSchema),
   baseUrl: Type.String({
     description: 'Base URL for the registry deliverables.',
     format: 'uri-reference',

@@ -4,7 +4,7 @@ import { ItemNameSchema } from './name'
 import { ItemTypeSchema } from './type'
 
 export const ItemBaseSchema = Type.Object({
-  $schema: $SchemaSchema,
+  $schema: Type.Optional($SchemaSchema),
   name: ItemNameSchema,
   type: ItemTypeSchema,
 }, {

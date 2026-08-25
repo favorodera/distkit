@@ -59,7 +59,7 @@ export function generateItemKey(type: 'npmPackage' | ItemType, name: string): Ge
  * @param visitedItemsKeys Set to track visited item keys.
  */
 function resolveRegistryItem(
-  referenceItem: Omit<ItemBase, '$schema'>,
+  referenceItem: ItemBase,
   registryItemsMap: Map<string, Item>,
   resolvedRegistryItems: Map<GeneratedItemKey, ResolvedRegistryItem>,
   visitedItemsKeys: Set<GeneratedItemKey>,
@@ -131,7 +131,7 @@ function resolveRegistryItem(
  * @param registry The registry containing the items.
  * @returns A map of resolved items including their transitive dependencies.
  */
-export function resolveRegistryItems(items: Iterable<Omit<ItemBase, '$schema'>>, registry: Registry) {
+export function resolveRegistryItems(items: Iterable<ItemBase>, registry: Registry) {
   const resolvedRegistryItems = new Map<GeneratedItemKey, ResolvedRegistryItem>()
 
   // Build a flat lookup map for efficient resolution

@@ -1,0 +1,15 @@
+import { defineConfig } from '@distkit/core'
+
+export default defineConfig({
+  components: {
+    dir: 'src/components',
+    import: '@/components',
+  },
+  registries: {
+    distkit: 'https://example.com/index.json',
+  },
+  utilities: {
+    dir: 'src/utils',
+    import: '@/utils',
+  },
+})
