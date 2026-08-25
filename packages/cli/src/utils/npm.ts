@@ -1,4 +1,4 @@
-import { ensureDependencyInstalled } from 'nypm'
+import { addDependency } from 'nypm'
 
 /**
  * Installs an npm package.
@@ -9,7 +9,10 @@ export async function installNpmPackage(name: string, version: string) {
   const cwd = process.cwd()
 
   try {
-    await ensureDependencyInstalled(`${name}@${version}`, { cwd })
+    await addDependency(`${name}@${version}`, {
+      cwd,
+      silent: true,
+    })
   } catch (error) {
     throw new Error(`Failed to install package ${name} from npm`, { cause: error })
   }

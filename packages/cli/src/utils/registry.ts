@@ -1,6 +1,6 @@
 import type { Item, ItemBase, ItemType, Registry } from '@distkit/schema'
 import fsExtra from 'fs-extra'
-import { basename } from 'pathe'
+import { basename, join } from 'pathe'
 import type { GeneratedItemKey, ResolvedRegistryItem, UserConfig } from '../types'
 import { resolveItemFileInstallPath } from './file-system'
 import { rewriteImports } from './imports'
@@ -59,7 +59,7 @@ export function generateItemKey(type: 'npmPackage' | ItemType, name: string): Ge
  * @param visitedItemsKeys Set to track visited item keys.
  */
 function resolveRegistryItem(
-  referenceItem: Pick<ItemBase, 'name' | 'type'>,
+  referenceItem: Omit<ItemBase, '$schema'>,
   registryItemsMap: Map<string, Item>,
   resolvedRegistryItems: Map<GeneratedItemKey, ResolvedRegistryItem>,
   visitedItemsKeys: Set<GeneratedItemKey>,
@@ -131,7 +131,7 @@ function resolveRegistryItem(
  * @param registry The registry containing the items.
  * @returns A map of resolved items including their transitive dependencies.
  */
-export function resolveRegistryItems(items: Array<Pick<ItemBase, 'name' | 'type'>>, registry: Registry) {
+export function resolveRegistryItems(items: Iterable<Omit<ItemBase, '$schema'>>, registry: Registry) {
   const resolvedRegistryItems = new Map<GeneratedItemKey, ResolvedRegistryItem>()
 
   // Build a flat lookup map for efficient resolution
@@ -168,6 +168,7 @@ async function installRegistryItem(
   shouldWriteChoicesMap: Map<string, boolean>,
   message: (message: string) => void,
 ) {
+  const cwd = process.cwd()
   const itemKey = generateItemKey(item.type, item.name)
 
   message(`Installing item "${itemKey}"`)
@@ -208,6 +209,23 @@ async function installRegistryItem(
       const npmPackageNameVersion = `${item.name}@${item.version}`
 
       try {
+        message(`Reading package.json`)
+        const userPackageJson = await fsExtra.readJson(join(cwd, 'package.json'))
+
+        const alreadyInstalledPackages = {
+          ...userPackageJson?.dependencies,
+          ...userPackageJson?.devDependencies,
+        }
+        message(`Package.json read successfully`)
+
+
+        message(`Checking if npm package "${item.name}" is already installed`)
+        if (Object.hasOwn(alreadyInstalledPackages, item.name)) {
+          message(`Npm package "${item.name}" already installed`)
+          return
+        }
+        message(`Npm package "${item.name}" not installed`)
+
         message(`Installing npm package "${npmPackageNameVersion}"`)
         await installNpmPackage(item.name, item.version)
         message(`Successfully installed npm package "${npmPackageNameVersion}"`)
@@ -230,7 +248,7 @@ async function installRegistryItem(
  * @param message Message function.
  */
 export async function installRegistryItems(
-  items: Array<ResolvedRegistryItem>,
+  items: Iterable<ResolvedRegistryItem>,
   registry: Registry,
   config: UserConfig,
   shouldWriteChoicesMap: Map<string, boolean>,

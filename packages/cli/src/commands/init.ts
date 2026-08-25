@@ -172,6 +172,8 @@ export async function init() {
           enabled: shouldWriteUtilitiesDir,
           async task() {
             await fsExtra.ensureDir(userConfigChoicesResolvedPaths.utilitiesDir)
+
+            return `Utilities directory created at ${toRelativePath(userConfigChoicesResolvedPaths.utilitiesDir)}`
           },
           title: 'Creating utilities directory',
         },
