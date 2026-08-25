@@ -29,9 +29,7 @@
   "bin": {
     "distkit": "./bin/distkit.mjs"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "publishConfig": {
     "access": "restricted"
   },

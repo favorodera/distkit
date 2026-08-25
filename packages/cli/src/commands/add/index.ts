@@ -14,7 +14,7 @@ export function add() {
     },
     subCommands: {
       component,
-      utility
+      utility,
     },
   })
 }

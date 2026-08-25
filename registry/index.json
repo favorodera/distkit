@@ -5,34 +5,26 @@
     "npmPackages": {
       "ofetch": "^1.5.1"
     },
-    "utilities": [
-      "props"
-    ]
+    "utilities": ["props"]
   },
   "items": [
     {
       "$schema": "../../packages/schema/json-schemas/component.json",
       "name": "button",
       "type": "component",
-      "files": [
-        "store/components/button/index.ts"
-      ],
+      "files": ["store/components/button/index.ts"],
       "dependencies": {
         "npmPackages": {
           "notform": "^2.2.2"
         },
-        "utilities": [
-          "props"
-        ]
+        "utilities": ["props"]
       }
     },
     {
       "$schema": "../../packages/schema/json-schemas/utility.json",
       "name": "props",
       "type": "utility",
-      "files": [
-        "store/utilities/props.ts"
-      ]
+      "files": ["store/utilities/props.ts"]
     }
   ],
   "name": "distkit",

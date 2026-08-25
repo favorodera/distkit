@@ -161,4 +161,3 @@ describe('resolveRegistryItems', () => {
     )).toThrow('Item "missing" of type "component" not found in registry')
   })
 })
-

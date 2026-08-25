@@ -218,7 +218,6 @@ async function installRegistryItem(
         }
         message(`Package.json read successfully`)
 
-
         message(`Checking if npm package "${item.name}" is already installed`)
         if (Object.hasOwn(alreadyInstalledPackages, item.name)) {
           message(`Npm package "${item.name}" already installed`)

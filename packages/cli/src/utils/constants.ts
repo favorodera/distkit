@@ -24,4 +24,4 @@ export const commonArgs = {
     type: 'string',
     valueHint: 'registry-name',
   },
-} satisfies Record<string, EnumArgDef | PositionalArgDef | StringArgDef> 
+} satisfies Record<string, EnumArgDef | PositionalArgDef | StringArgDef>
