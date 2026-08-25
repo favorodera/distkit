@@ -18,7 +18,7 @@ export function resolveRegistryNameToSource(name: string, config: UserConfig) {
   const registryIndexUrl = config.registries[name]
 
   if (!registryIndexUrl) {
-    throw new Error(`Registry ${name} not found. Please add it to your config`)
+    throw new Error(`Registry "${name}" not found. Please add it to your config`)
   }
 
   return { indexUrl: registryIndexUrl, name }
@@ -78,7 +78,7 @@ function resolveRegistryItem(
   const item = registryItemsMap.get(itemKey)
 
   if (!item) {
-    throw new Error(`Item ${referenceItem.name} of type ${referenceItem.type} not found in registry`)
+    throw new Error(`Item "${referenceItem.name}" of type "${referenceItem.type}" not found in registry`)
   }
 
   // Add the items to the resolved items

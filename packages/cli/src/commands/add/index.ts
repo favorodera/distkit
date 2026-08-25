@@ -1,5 +1,6 @@
 import { defineCommand } from 'citty'
 import { component } from './component'
+import { utility } from './utility'
 
 /**
  * Add registry item command.
@@ -13,6 +14,7 @@ export function add() {
     },
     subCommands: {
       component,
+      utility
     },
   })
 }

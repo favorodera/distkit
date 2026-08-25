@@ -3,22 +3,20 @@
   "type": "module",
   "version": "0.1.0-alpha.0",
   "private": true,
-  "description": "Foundation for your Vue documentation.",
-  "author": "Favour Emeka <favorodera@mail.com>",
+  "description": "defineConfig() and the distkit CLI binary — the package consumers actually install.",
+  "author": "Favour Emeka <favorodera@gmail.com>",
   "license": "MIT",
   "funding": "https://github.com/sponsors/favorodera",
-  "homepage": "https://nka.vercel.app/",
+  "homepage": "https://github.com/favorodera/distkit#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/favorodera/nka.git"
+    "url": "git+https://github.com/favorodera/distkit.git" 
   },
-  "bugs": {
-    "url": "https://github.com/favorodera/nka/issues"
-  },
+  "bugs": { "url": "https://github.com/favorodera/distkit/issues" },
   "keywords": [
-    "nka",
-    "docs",
-    "core"
+    "distkit",
+    "config",
+    "cli"
   ],
   "sideEffects": false,
   "exports": {

@@ -14,6 +14,6 @@ export async function installNpmPackage(name: string, version: string) {
       silent: true,
     })
   } catch (error) {
-    throw new Error(`Failed to install package ${name} from npm`, { cause: error })
+    throw new Error(`Failed to install package "${name}" from npm`, { cause: error })
   }
 }
