@@ -1,7 +1,7 @@
 {
   "name": "@distkit/schema",
   "type": "module",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "description": "TypeBox schemas, JSON Schema generation, and registry-building utilities for distkit.",
   "author": "Favour Emeka <favorodera@gmail.com>",

@@ -1,6 +1,6 @@
 {
   "$schema": "../packages/schema/json-schemas/registry.json",
-  "baseUrl": "https://raw.githubusercontent.com/favorodera/distkit/refs/tags/v0.1.0/",
+  "baseUrl": "https://raw.githubusercontent.com/favorodera/distkit/refs/tags/v1.0.0/",
   "dependencies": {
     "npmPackages": {
       "ofetch": "^1.5.1"
@@ -36,5 +36,5 @@
     }
   ],
   "name": "distkit",
-  "version": "0.1.0"
+  "version": "1.0.0"
 }
