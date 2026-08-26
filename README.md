@@ -17,24 +17,26 @@
 
 ## What this is
 
-distkit is an open-code distribution system: a **registry** — a schema-validated catalog of installable items — and a **CLI** (`distkit`) that resolves items from a registry and writes them into a consumer's project. Similar in spirit to how shadcn/ui or shadcn-vue distribute components, but not tied to components or to any one framework — an item can be a component, a utility, or something else entirely, since nothing in the schema requires exactly these two.
+distkit is a template for building your own open-code distribution system — the kind where items (components, utilities, or whatever you want to ship) get copied into a consumer's project as real, editable files, instead of installed as an opaque dependency. It's not a product to install; it's a working registry and CLI you fork, gut, and adapt into your own.
 
 ## What this is not
 
-- **Not published to npm today.** The release pipeline supports it ([Relizy](https://relizy.dev/) is configured for a public npm publish), but publishing is intentionally disabled for now — the release workflow runs with `--no-publish`.
+- **Not an installable package.** Nothing here is published to npm. Clone or fork the repo directly — that's the intended way to use it, not `npm install`.
 - **Not roadmap-driven.** See "Maintenance" below.
 - **Not opinionated about what you're distributing.** The schema doesn't assume components — see [`packages/schema`](./packages/schema) for how the item-type union works and how to replace it.
 
 ## How it fits together
 
 - **`store/`** — the actual source for every deliverable: components, utilities, whatever distkit distributes. This is what gets copied into a consumer's project.
-- **`registry/`** — hand-authored manifest entries (`registry/components/*.json`, `registry/utilities/*.json`) describing what's in `store/`, plus the built `registry/index.json` that consumers actually fetch.
+- **`registry/`** — hand-authored manifest entries (`registry/components/*.json`, `registry/utilities/*.json`) describing what's in `store/`, plus the built `registry/index.json` that a resolved CLI actually fetches.
 - **`packages/schema`** — TypeBox schemas that validate the manifest entries and the built registry index, plus the scripts that build both.
 - **`packages/cli`** — the `distkit` command-line tool: `distkit init` sets up a consumer project, `distkit add component <name>` / `distkit add utility <name>` fetch and install items.
-- **`packages/core`** — the package a consumer actually installs: a thin `defineConfig()` helper for `distkit.config.ts`, plus a re-export of the CLI binary.
-- **`apps/playground`** — a real consumer project used to test the whole loop end to end, wired up with its own `distkit.config.ts` pointing at this repo's registry.
+- **`packages/core`** — the package a consumer's project depends on: a thin `defineConfig()` helper for `distkit.config.ts`, plus a re-export of the CLI binary.
+- **`apps/playground`** — a real consumer project used to test the whole loop end to end, wired up with its own `distkit.config.ts` pointing at this repo's own registry.
 
-## Using it
+## Using it (the included example)
+
+This repo ships with a small working example — a `button` component and a `props` utility — to demonstrate the full loop. This is what pointing a project at it looks like; once you've forked and built out your own registry, you'd point at that instead:
 
 ```ts
 // distkit.config.ts
@@ -46,7 +48,7 @@ export default defineConfig({
     import: '@/components'
   },
   registries: {
-    distkit: 'https://raw.githubusercontent.com/favorodera/distkit/refs/tags/v0.1.0-alpha.0/registry/index.json',
+    distkit: 'https://raw.githubusercontent.com/favorodera/distkit/refs/tags/v1.0.0/registry/index.json',
   },
   utilities: {
     dir: 'src/utils',
@@ -71,10 +73,10 @@ apps/
 
 packages/
   cli/            The `distkit` command-line tool
-  core/           defineConfig() + CLI binary re-export — what consumers install
+  core/           defineConfig() + CLI binary re-export
   schema/         TypeBox schemas, validation, and registry build scripts
 
-registry/         Manifest entries and the built registry index consumers fetch
+registry/         Manifest entries and the built registry index
 store/            Source for every deliverable — what actually gets installed
 ```
 
