@@ -2,7 +2,7 @@
   "name": "distkit",
   "version": "1.0.0",
   "private": true,
-  "packageManager": "pnpm@11.22.0",
+  "packageManager": "pnpm@11.25.0",
   "description": "A minimal registry and CLI for distributing open code. Fork it and build your own.",
   "author": "Favour Emeka <favorodera@gmail.com>",
   "license": "MIT",
