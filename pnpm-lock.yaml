@@ -104,7 +104,7 @@ importers:
         version: link:../../packages/core
       notform:
         specifier: ^2.2.2
-        version: 2.2.2(vue@3.5.41(typescript@6.0.3))
+        version: 2.2.5(vue@3.5.41(typescript@6.0.3))
       ofetch:
         specifier: ^1.5.1
         version: 1.5.1
@@ -2133,11 +2133,11 @@ packages:
     resolution: {integrity: sha512-D9UOmYG3UH1V+ENW56t5QXBwJw1YEY18ruVeus89Rw+SyIgjPkCO84bRzO3uNIYosJbNwiabWVn48o3uJLjxFQ==}
     engines: {node: '>=18'}
 
-  notform@2.2.2:
-    resolution: {integrity: sha512-yOiz0Vshciv8DT6Kkt65J3kkBFP6J86mRzpK6p772wpGwdEB5yVAS+UerISmDI+3aRCljKIQ5k7qQdp1zXVEuw==}
-    engines: {node: '>=22.0.0', pnpm: '>=11.0.0'}
+  notform@2.2.5:
+    resolution: {integrity: sha512-d0rloo3cfw4MC+AQME7xzrBZKN4KMKQsGNgbTfvCuHCmYr+20GUQ7UBf8jWjlo2XHyTC6S1Tgmg2fOxZONEkxg==}
+    engines: {node: '>=24.0.0', pnpm: '>=11.0.0'}
     peerDependencies:
-      vue: ^3.0.0
+      vue: ^3.5.0
 
   nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
@@ -4698,7 +4698,7 @@ snapshots:
 
   node-releases@2.0.53: {}
 
-  notform@2.2.2(vue@3.5.41(typescript@6.0.3)):
+  notform@2.2.5(vue@3.5.41(typescript@6.0.3)):
     dependencies:
       '@standard-schema/spec': 1.1.0
       dequal: 2.0.3
