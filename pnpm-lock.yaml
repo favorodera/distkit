@@ -72,7 +72,7 @@ catalogs:
       version: 2.0.3
     typebox:
       specifier: ^1.3.14
-      version: 1.3.16
+      version: 1.3.34
 
 importers:
 
@@ -140,7 +140,7 @@ importers:
         version: 2.0.3
       typebox:
         specifier: catalog:vendor
-        version: 1.3.16
+        version: 1.3.34
     devDependencies:
       '@favorodera/eslint-config':
         specifier: catalog:tooling
@@ -175,7 +175,7 @@ importers:
     dependencies:
       typebox:
         specifier: catalog:vendor
-        version: 1.3.16
+        version: 1.3.34
     devDependencies:
       '@clack/prompts':
         specifier: catalog:vendor
@@ -2519,8 +2519,8 @@ packages:
     resolution: {integrity: sha512-YGYEVz3Fm5iy/AybuA0oyNFq7H4CgQNfRp/qfe8nurE1kuCeNm3/vfm9X4Mtl+qLyaKJUh5xrFZwogr41SMjYA==}
     engines: {node: '>=20'}
 
-  typebox@1.3.16:
-    resolution: {integrity: sha512-Jac8dgnin+g2p1w1v9sk92Wvp49ZqsmSgNhrXDK+RqrovsjiORMZvYZ8t8id9b9XQp6LMfaAwnIRSHGsM+3FMw==}
+  typebox@1.3.34:
+    resolution: {integrity: sha512-wbnzrXXDW8xEFHDZZs2jo1MkhaYlKAY4FRhpBc1+2LF1fZVBGCXGdLEhA/Z/NBbgzJMFfeM8m7elKPa/+KxaUQ==}
 
   typescript-eslint@8.67.0:
     resolution: {integrity: sha512-S2udFs8tCKEKffuJ4TB1idGUZiXdCPGi3IPBGWXarbLQ5UPXORV8QEVzJ4gCRduURMb5EkpNCdjbk0eDIuI8Yg==}
@@ -5050,7 +5050,7 @@ snapshots:
     dependencies:
       tagged-tag: 1.0.0
 
-  typebox@1.3.16: {}
+  typebox@1.3.34: {}
 
   typescript-eslint@8.67.0(eslint@10.9.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3):
     dependencies:
