@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "@distkit/core": "workspace:*",
-    "notform": "^2.2.2",
-    "ofetch": "^1.5.1"
+    "notform": "2.2.2",
+    "ofetch": "1.5.1"
   }
 }
