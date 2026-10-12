@@ -23,7 +23,7 @@ catalogs:
       version: 10.12.0
     relizy:
       specifier: ^1.4.9
-      version: 1.5.0
+      version: 1.7.0
     tinyglobby:
       specifier: ^0.2.17
       version: 0.2.17
@@ -72,7 +72,7 @@ catalogs:
       version: 2.0.3
     typebox:
       specifier: ^1.3.14
-      version: 1.3.34
+      version: 1.3.36
 
 importers:
 
@@ -89,7 +89,7 @@ importers:
         version: 10.12.0(jiti@2.7.0)(supports-color@7.2.0)
       relizy:
         specifier: catalog:tooling
-        version: 1.5.0(@types/node@26.6.4)
+        version: 1.7.0(@types/node@26.6.4)
       turbo:
         specifier: catalog:tooling
         version: 2.11.7
@@ -140,7 +140,7 @@ importers:
         version: 2.0.3
       typebox:
         specifier: catalog:vendor
-        version: 1.3.34
+        version: 1.3.36
     devDependencies:
       '@favorodera/eslint-config':
         specifier: catalog:tooling
@@ -175,7 +175,7 @@ importers:
     dependencies:
       typebox:
         specifier: catalog:vendor
-        version: 1.3.34
+        version: 1.3.36
     devDependencies:
       '@clack/prompts':
         specifier: catalog:vendor
@@ -2306,8 +2306,8 @@ packages:
     resolution: {integrity: sha512-ycwFAS14Jw4mppvmK4GR/J6u3WpWpjkEApehuHtLc/8VpPNpDMbQ4WjqwplXifGeyKOzHSFLmSPqzksDQE2Sfg==}
     hasBin: true
 
-  relizy@1.5.0:
-    resolution: {integrity: sha512-b8pgJeDU0WzZlquMH6h3LSEtxZOVbs41DkdVFEgA+CeOFU7iY4OahN73VZwNu47hcyGfiudYSN/+QJdS19MLMQ==}
+  relizy@1.7.0:
+    resolution: {integrity: sha512-X4VmdtxK2Bz5mCJaJUs8DbScBQyt/rDFU9ABObcS5S66QNVD4erwZbjlNggyeDWcNCRhwqsbM5jTmWV1N4liLg==}
     engines: {node: '>=20.0.0'}
     hasBin: true
     peerDependencies:
@@ -2554,8 +2554,8 @@ packages:
     resolution: {integrity: sha512-NoSdpq/WEiAg5sjmBkmV/hfxv6HJH4NqPNrqjtSO5CwRmpsDfaf4begxW34KdJykH/l1yHtwBWQkCRdoXO8mPA==}
     engines: {node: '>=20'}
 
-  typebox@1.3.34:
-    resolution: {integrity: sha512-wbnzrXXDW8xEFHDZZs2jo1MkhaYlKAY4FRhpBc1+2LF1fZVBGCXGdLEhA/Z/NBbgzJMFfeM8m7elKPa/+KxaUQ==}
+  typebox@1.3.36:
+    resolution: {integrity: sha512-bu2Ec2Ti9B4IFSFj1FcZbtLNB/W7igQwxocMGJLAG2NTv1nI+ImtIA34YgHW4CVyGVlJqNXR1GJyLmdWgV3DuA==}
 
   typescript-eslint@8.71.0:
     resolution: {integrity: sha512-fBdHYiqQ14RW6mOMXD14Svn82ZsCYAoQSzGRzyEjR59S5A2Krh/l7fGTOQ7iCr8gGy/mHVXtEF7s5fgjEdV0Pw==}
@@ -4898,7 +4898,7 @@ snapshots:
     dependencies:
       jsesc: 3.1.0
 
-  relizy@1.5.0(@types/node@26.6.4):
+  relizy@1.7.0(@types/node@26.6.4):
     dependencies:
       '@inquirer/prompts': 8.7.2(@types/node@26.6.4)
       '@maz-ui/node': 5.0.0-beta.26
@@ -5115,7 +5115,7 @@ snapshots:
     dependencies:
       tagged-tag: 1.0.0
 
-  typebox@1.3.34: {}
+  typebox@1.3.36: {}
 
   typescript-eslint@8.71.0(eslint@10.12.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3):
     dependencies:
