@@ -23,7 +23,7 @@ catalogs:
     yaml: ^2.9.0
   vendor:
     '@clack/prompts': ^1.7.0
-    c12: 4.0.0-rc.2
+    c12: 4.0.0-rc.3
     citty: ^0.2.2
     fs-extra: ^11.4.0
     json5: ^2.2.3
