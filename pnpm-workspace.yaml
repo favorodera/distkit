@@ -8,7 +8,7 @@ packages:
 
 catalogs:
   tooling:
-    '@favorodera/eslint-config': ^1.1.2
+    '@favorodera/eslint-config': ^3.0.0
     '@types/fs-extra': ^11.0.4
     '@types/node': ^26.1.2
     '@vitest/ui': ^4.1.10
