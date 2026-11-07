@@ -1,7 +1,8 @@
-import { factory } from '@favorodera/eslint-config'
+import { defineConfig } from '@favorodera/eslint-config'
 
-export default factory({
-  pnpm: false,
+export default defineConfig({
   tailwind: false,
   vue: false,
+  css:false,
+  vitest:false,
 })

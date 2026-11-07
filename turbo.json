@@ -2,7 +2,9 @@
   "$schema": "https://turborepo.dev/schema.json",
   "tasks": {
     "build": {
-      "dependsOn": ["^build"],
+      "dependsOn": [
+        "^build",
+      ],
       "outputs": [
         "dist/**",
         ".nuxt/**",
@@ -14,13 +16,21 @@
       "outputs": []
     },
     "lint": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "lint:fix": {
+      "dependsOn": ["^build"],
       "outputs": []
     },
     "test": {
+      "dependsOn": ["^build"],
       "outputs": []
     },
     "dev": {
-      "dependsOn": ["^build"],
+      "dependsOn": [
+        "^build",
+      ],
       "persistent": true,
       "cache": false
     },
@@ -33,11 +43,8 @@
       "persistent": true,
       "cache": false
     },
-    "postinstall": {
-      "outputs": [".nuxt/**"]
-    },
     "prepublishOnly": {
       "outputs": []
-    }
+    },
   }
 }

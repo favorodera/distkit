@@ -213,113 +213,24 @@
     "workspaceroot",
     "distkit"
   ],
-  "git.autofetch": true,
   "editor.tabSize": 2,
-  "vue.format.script.initialIndent": true,
-  "vue.format.style.initialIndent": true,
-  "editor.quickSuggestions": {
-    "strings": true,
-    "comments": "on"
-  },
   "eslint.format.enable": true,
-  "css.lint.unknownAtRules": "ignore",
   "editor.detectIndentation": false,
   "editor.indentSize": "tabSize",
-  "tailwindCSS.emmetCompletions": true,
-  "tailwindCSS.validate": true,
-  "tailwindCSS.lint.suggestCanonicalClasses": "ignore",
-  "tailwindCSS.includeLanguages": {
-    "css": "tailwindcss"
-  },
   "files.eol": "\n",
-  "css.lint.zeroUnits": "warning",
-  "css.lint.duplicateProperties": "error",
-  "editor.inlayHints.enabled": "on",
   "eslint.runtime": "node",
-  "mdc.enableComponentMetadataCompletions": true,
-  "mdc.enableFormatting": true,
-  "tailwindCSS.classAttributes": ["class"],
-  "tailwindCSS.classFunctions": ["tv"],
-  "tailwindCSS.experimental.classRegex": [
-    [
-      "Classes\\s*=\\s*computed\\(\\(\\)\\s*=>\\s*([\\s\\S]+?)\\)",
-      "'([^']+)'"
-    ]
-  ],
-  "editor.wrapOnEscapedLineFeeds": true,
-  "iconify.languageIds": [
-    "javascript",
-    "typescript",
-    "vue",
-    "json",
-    "yaml",
-    "markdown",
-    "md",
-    "mdc"
-  ],
-  "eslint.rules.customizations": [
-    {
-      "rule": "style/*",
-      "severity": "off",
-      "fixable": true
-    },
-    {
-      "rule": "format/*",
-      "severity": "off",
-      "fixable": true
-    },
-    {
-      "rule": "*-indent",
-      "severity": "off",
-      "fixable": true
-    },
-    {
-      "rule": "*-spacing",
-      "severity": "off",
-      "fixable": true
-    },
-    {
-      "rule": "*-spaces",
-      "severity": "off",
-      "fixable": true
-    },
-    {
-      "rule": "*-order",
-      "severity": "off",
-      "fixable": true
-    },
-    {
-      "rule": "*-dangle",
-      "severity": "off",
-      "fixable": true
-    },
-    {
-      "rule": "*-newline",
-      "severity": "off",
-      "fixable": true
-    },
-    {
-      "rule": "*quotes",
-      "severity": "off",
-      "fixable": true
-    },
-    {
-      "rule": "*semi",
-      "severity": "off",
-      "fixable": true
-    }
-  ],
-  "tailwindCSS.lint.cssConflict": "ignore",
   "npm.packageManager": "pnpm",
   "cSpell.ignorePaths": [
     "package-lock.json",
+    ".gitignore",
     "node_modules",
     "vscode-extension",
     ".git/{info,lfs,logs,refs,objects}/**",
     ".git/{index,*refs,*HEAD}",
     ".vscode",
     ".vscode-insiders",
-    "pnpm-lock.yaml"
+    "pnpm-lock.yaml",
+    "CHANGELOG.md"
   ],
   "eslint.validate": [
     "javascript",
@@ -333,9 +244,5 @@
     "yaml",
     "yml",
     "mdc"
-  ],
-  "todo-tree.filtering.excludeGlobs": [
-    "**/node_modules/*/**",
-    "**/CHANGELOG.md"
   ]
 }

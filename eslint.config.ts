@@ -1,8 +1,15 @@
-import { factory } from '@favorodera/eslint-config'
+import { defineConfig } from '@favorodera/eslint-config'
 
-export default factory({
-  ignores: ['./apps/playground/**'],
+export default defineConfig({
+  ignores: ['playground/', 'packages/'],
+  css: false,
+  perfectionist: {
+    settings: {
+      tsconfig: {
+        rootDir: '',
+      },
+    },
+  },
   tailwind: false,
-  test: false,
-  vue: false,
+  vitest: false,
 })

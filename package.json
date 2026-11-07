@@ -2,7 +2,7 @@
   "name": "distkit",
   "version": "1.0.0",
   "private": true,
-  "packageManager": "pnpm@11.28.9",
+  "packageManager": "pnpm@12.16.1",
   "description": "A minimal registry and CLI for distributing open code. Fork it and build your own.",
   "author": "Favour Emeka <favorodera@gmail.com>",
   "license": "MIT",
@@ -15,29 +15,41 @@
   "bugs": {
     "url": "https://github.com/favorodera/distkit/issues"
   },
-  "engines": {
-    "node": ">=22.0.0",
-    "pnpm": ">=11.0.0"
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": ">=24.0.0 <25.0.0",
+      "onFail": "download"
+    },
+    "packageManager": {
+      "name": "pnpm",
+      "version": "12.16.1",
+      "onFail": "download"
+    }
   },
   "scripts": {
-    "dev": "turbo dev",
+     "dev": "turbo dev",
+    "dev:all": "turbo dev play",
+    "play": "turbo play",
     "build": "turbo build",
     "lint": "pnpm lint:root && turbo lint",
-    "lint:root": "eslint . --fix --ignore-pattern 'packages/*' --ignore-pattern 'apps/*'",
+    "lint:root": "eslint .",
+    "lint:root:fix": "eslint . --fix",
+    "lint:fix": "pnpm lint:root:fix && turbo lint:fix",
     "typecheck": "turbo typecheck",
     "test": "turbo test",
-    "postinstall": "turbo postinstall",
     "test:watch": "turbo test:watch",
     "preview": "turbo preview",
     "prepublishOnly": "turbo prepublishOnly",
     "ready": "pnpm install && pnpm lint && pnpm typecheck && pnpm test && pnpm build"
   },
   "devDependencies": {
-    "@favorodera/eslint-config": "catalog:tooling",
-    "@types/node": "catalog:tooling",
-    "eslint": "catalog:tooling",
-    "relizy": "catalog:tooling",
-    "turbo": "catalog:tooling",
-    "typescript": "catalog:tooling"
+    "@favorodera/eslint-config": "catalog:",
+    "@types/node": "catalog:",
+    "eslint": "catalog:",
+    "relizy": "catalog:",
+    "turbo": "catalog:",
+    "typescript": "catalog:",
+    "pkg-pr-new":"catalog:"
   }
 }

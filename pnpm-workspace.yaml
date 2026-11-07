@@ -4,10 +4,9 @@ trustPolicy: no-downgrade
 
 packages:
   - 'packages/**'
-  - 'apps/**'
+  - playground
 
-catalogs:
-  tooling:
+catalog:
     '@favorodera/eslint-config': ^3.0.0
     '@types/fs-extra': ^11.0.4
     '@types/node': ^26.1.2
@@ -19,9 +18,9 @@ catalogs:
     tsx: ^4.23.5
     turbo: ^2.10.10
     typescript: ^6.0.3
+    pkg-pr-new: ^0.0.93
     vitest: ^4.1.10
     yaml: ^2.9.0
-  vendor:
     '@clack/prompts': ^1.7.0
     c12: 4.0.0-rc.4
     citty: ^0.2.2

@@ -36,8 +36,7 @@
     "access": "restricted"
   },
   "engines": {
-    "node": ">=22.0.0",
-    "pnpm": ">=11.0.0"
+    "node": ">=22.0.0"
   },
   "scripts": {
     "build": "tsdown",
@@ -46,25 +45,26 @@
     "prepublishOnly": "pnpm run build",
     "test": "vitest",
     "test:watch": "vitest watch --ui",
-    "lint": "eslint . --fix"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@clack/prompts": "catalog:vendor",
+    "@clack/prompts": "catalog:",
     "@distkit/schema": "workspace:*",
-    "c12": "catalog:vendor",
-    "citty": "catalog:vendor",
-    "fs-extra": "catalog:vendor",
-    "json5": "catalog:vendor",
-    "nypm": "catalog:vendor",
-    "ofetch": "catalog:vendor",
-    "pathe": "catalog:vendor",
-    "typebox": "catalog:vendor"
+    "c12": "catalog:",
+    "citty": "catalog:",
+    "fs-extra": "catalog:",
+    "json5": "catalog:",
+    "nypm": "catalog:",
+    "ofetch": "catalog:",
+    "pathe": "catalog:",
+    "typebox": "catalog:"
   },
   "devDependencies": {
-    "@favorodera/eslint-config": "catalog:tooling",
-    "@types/fs-extra": "catalog:tooling",
-    "@vitest/ui": "catalog:tooling",
-    "tsdown": "catalog:tooling",
-    "vitest": "catalog:tooling"
+    "@favorodera/eslint-config": "catalog:",
+    "@types/fs-extra": "catalog:",
+    "@vitest/ui": "catalog:",
+    "tsdown": "catalog:",
+    "vitest": "catalog:"
   }
 }
