@@ -39,28 +39,28 @@ jobs:
       - name: Build
         run: pnpm build
 
-  continuous-release:
-    name: Continuous releases
-    needs: checks
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7.0.1
+  # continuous-release:
+  #   name: Continuous releases
+  #   needs: checks
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v7.0.1
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6.1.0
+  #     - name: Setup pnpm
+  #       uses: pnpm/action-setup@v6.1.0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          cache: pnpm
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v7
+  #       with:
+  #         node-version: 24
+  #         cache: pnpm
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+  #     - name: Install dependencies
+  #       run: pnpm install --frozen-lockfile
 
-      - name: Build packages
-        run: pnpm build --filter='./packages/*'
+  #     - name: Build packages
+  #       run: pnpm build --filter='./packages/*'
 
-      - name: Publish preview packages
-        run: pnpm exec pkg-pr-new publish --pnpm --packageManager="npm,pnpm,bun,yarn" './packages/*'
+  #     - name: Publish preview packages
+  #       run: pnpm exec pkg-pr-new publish --pnpm --packageManager="npm,pnpm,bun,yarn" './packages/*'
