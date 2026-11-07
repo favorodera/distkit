@@ -42,7 +42,9 @@ const registryItemEntriesFiles = await glob(
 spin.stop('Registry item entries scanned')
 
 note(
-  registryItemEntriesFiles.map(entry => toRelativePath(entry)).join('\n'),
+  registryItemEntriesFiles.map((entry) => {
+    return toRelativePath(entry)
+  }).join('\n'),
   `Found ${registryItemEntriesFiles.length} registry item entries`,
 )
 
@@ -50,6 +52,7 @@ spin.start('Compiling registry item entries')
 const registryItemEntries = new Set<Registry['items'][number]>()
 
 for (const registryItemEntryFile of registryItemEntriesFiles) {
+  // eslint-disable-next-line no-await-in-loop
   const registryItemEntry = await fsExtra.readJson(registryItemEntryFile, 'utf8')
 
   registryItemEntries.add(registryItemEntry)

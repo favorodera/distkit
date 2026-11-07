@@ -5,13 +5,19 @@ import { basename, join, relative } from 'pathe'
 import type { ResolvedRegistryItem, UserConfig } from '../types'
 
 /**
- * Converts an absolute path to a relative path.
- * @param target The absolute target path to convert.
- * @param from The absolute from path to convert from. Defaults to process.cwd().
- * @returns The relative path.
+ * Recursively confirms whether a user wants to overwrite all files for a list of items
+ * @param items The items to confirm overwriting for
+ * @param config The user configuration
+ * @returns A map of file paths to boolean overwrite decisions
  */
-export function toRelativePath(target: string, from: string = process.cwd()) {
-  return relative(from, target)
+export async function confirmItemsFilesOverwrite(items: Iterable<ResolvedRegistryItem>, config: UserConfig) {
+  const userDecisions = new Map<string, boolean>()
+
+  for (const item of items) {
+    await confirmItemFilesOverwrite(item, config, userDecisions)
+  }
+
+  return userDecisions
 }
 
 /**
@@ -43,26 +49,6 @@ export async function confirmPathOverwrite(path: string) {
 }
 
 /**
- * Resolves the install directory for an item
- * @param type The type of item to install
- * @param config The user configuration
- * @returns The install directory for the item
- */
-export function resolveItemInstallDir(type: ItemType, config: UserConfig) {
-  switch (type) {
-    case 'component': {
-      return config.components.dir
-    }
-    case 'utility': {
-      return config.utilities.dir
-    }
-    default: {
-      throw new Error(`Cannot resolve install directory for "${type}"`)
-    }
-  }
-}
-
-/**
  * Resolves the install path for a given item's file
  * @param item The item to resolve the file install path for
  * @param filePath The file to resolve the install path for
@@ -84,6 +70,36 @@ export function resolveItemFileInstallPath(item: Item, filePath: string, config:
       return join(cwd, installDir, fileName)
     }
   }
+}
+
+/**
+ * Resolves the install directory for an item
+ * @param type The type of item to install
+ * @param config The user configuration
+ * @returns The install directory for the item
+ */
+export function resolveItemInstallDir(type: ItemType, config: UserConfig) {
+  switch (type) {
+    case 'component': {
+      return config.components.dir
+    }
+    case 'utility': {
+      return config.utilities.dir
+    }
+    default: {
+      throw new Error(`Cannot resolve install directory for "${type}"`)
+    }
+  }
+}
+
+/**
+ * Converts an absolute path to a relative path.
+ * @param target The absolute target path to convert.
+ * @param from The absolute from path to convert from. Defaults to process.cwd().
+ * @returns The relative path.
+ */
+export function toRelativePath(target: string, from: string = process.cwd()) {
+  return relative(from, target)
 }
 
 /**
@@ -127,22 +143,6 @@ async function confirmItemFilesOverwrite(
       }
       break
     }
-  }
-
-  return userDecisions
-}
-
-/**
- * Recursively confirms whether a user wants to overwrite all files for a list of items
- * @param items The items to confirm overwriting for
- * @param config The user configuration
- * @returns A map of file paths to boolean overwrite decisions
- */
-export async function confirmItemsFilesOverwrite(items: Iterable<ResolvedRegistryItem>, config: UserConfig) {
-  const userDecisions = new Map<string, boolean>()
-
-  for (const item of items) {
-    await confirmItemFilesOverwrite(item, config, userDecisions)
   }
 
   return userDecisions

@@ -8,23 +8,6 @@ import { jsonFetch, textFetch } from './network'
 import { installNpmPackage } from './npm'
 
 /**
- * Resolves a registry name to its source from the user config.
- * @param name The name of the registry to resolve.
- * @param config The user config containing the registry mappings.
- * @returns An object containing the registry name and its index URL.
- * @throws If the registry name is not found in the config.
- */
-export function resolveRegistryNameToSource(name: string, config: UserConfig) {
-  const registryIndexUrl = config.registries[name]
-
-  if (!registryIndexUrl) {
-    throw new Error(`Registry "${name}" not found. Please add it to your config`)
-  }
-
-  return { indexUrl: registryIndexUrl, name }
-}
-
-/**
  * Fetches a registry from its index URL.
  * @param source The resolved registry source.
  * @returns The fetched registry.
@@ -51,77 +34,28 @@ export function generateItemKey(type: 'npmPackage' | ItemType, name: string): Ge
 }
 
 /**
- * Recursively resolves an item and its transitive dependencies.
- * @internal
- * @param referenceItem Item to resolve.
- * @param registryItemsMap Map of all registry items.
- * @param resolvedRegistryItems Map to store resolved items.
- * @param visitedItemsKeys Set to track visited item keys.
+ * Installs multiple registry items.
+ * @param items Items to install.
+ * @param registry Registry containing the items.
+ * @param config User config.
+ * @param shouldWriteChoicesMap Map of user choices wether to install a specific file(if file based item).
+ * @param message Message function.
  */
-function resolveRegistryItem(
-  referenceItem: ItemBase,
-  registryItemsMap: Map<string, Item>,
-  resolvedRegistryItems: Map<GeneratedItemKey, ResolvedRegistryItem>,
-  visitedItemsKeys: Set<GeneratedItemKey>,
+export async function installRegistryItems(
+  items: Iterable<ResolvedRegistryItem>,
+  registry: Registry,
+  config: UserConfig,
+  shouldWriteChoicesMap: Map<string, boolean>,
+  message: (message: string) => void,
 ) {
-  const itemKey = generateItemKey(referenceItem.type, referenceItem.name)
-
-  // Prevent infinite loops check if item already visited
-  if (visitedItemsKeys.has(itemKey)) {
-    return
-  }
-
-  // Mark the item as visited
-  visitedItemsKeys.add(itemKey)
-
-  // Retrieve the full item definition from our registry map
-  const item = registryItemsMap.get(itemKey)
-
-  if (!item) {
-    throw new Error(`Item "${referenceItem.name}" of type "${referenceItem.type}" not found in registry`)
-  }
-
-  // Add the items to the resolved items
-  resolvedRegistryItems.set(itemKey, item)
-
-  // Recurse over the item's dependencies if it has any, iterate and add dependencies to the resolved items
-  if ('dependencies' in item && item.dependencies) {
-    // Check for npm packages
-    if (item.dependencies.npmPackages) {
-      const npmPackagesEntries = Object.entries(item.dependencies.npmPackages)
-
-      for (const [npmPackageName, npmPackageVersion] of npmPackagesEntries) {
-        const npmPackageKey = generateItemKey('npmPackage', npmPackageName)
-
-        resolvedRegistryItems.set(npmPackageKey, {
-          name: npmPackageName,
-          type: 'npmPackage',
-          version: npmPackageVersion,
-        })
-      }
-    }
-
-    if ('components' in item.dependencies && item.dependencies.components) {
-      for (const componentName of item.dependencies.components) {
-        resolveRegistryItem(
-          { name: componentName, type: 'component' },
-          registryItemsMap,
-          resolvedRegistryItems,
-          visitedItemsKeys,
-        )
-      }
-    }
-
-    if ('utilities' in item.dependencies && item.dependencies.utilities) {
-      for (const utilityName of item.dependencies.utilities) {
-        resolveRegistryItem(
-          { name: utilityName, type: 'utility' },
-          registryItemsMap,
-          resolvedRegistryItems,
-          visitedItemsKeys,
-        )
-      }
-    }
+  for (const item of items) {
+    await installRegistryItem(
+      item,
+      registry,
+      config,
+      shouldWriteChoicesMap,
+      message,
+    )
   }
 }
 
@@ -150,6 +84,23 @@ export function resolveRegistryItems(items: Iterable<ItemBase>, registry: Regist
   }
 
   return resolvedRegistryItems
+}
+
+/**
+ * Resolves a registry name to its source from the user config.
+ * @param name The name of the registry to resolve.
+ * @param config The user config containing the registry mappings.
+ * @returns An object containing the registry name and its index URL.
+ * @throws If the registry name is not found in the config.
+ */
+export function resolveRegistryNameToSource(name: string, config: UserConfig) {
+  const registryIndexUrl = config.registries[name]
+
+  if (!registryIndexUrl) {
+    throw new Error(`Registry "${name}" not found. Please add it to your config`)
+  }
+
+  return { indexUrl: registryIndexUrl, name }
 }
 
 /**
@@ -239,27 +190,78 @@ async function installRegistryItem(
 }
 
 /**
- * Installs multiple registry items.
- * @param items Items to install.
- * @param registry Registry containing the items.
- * @param config User config.
- * @param shouldWriteChoicesMap Map of user choices wether to install a specific file(if file based item).
- * @param message Message function.
+ * Recursively resolves an item and its transitive dependencies.
+ * @internal
+ * @param referenceItem Item to resolve.
+ * @param registryItemsMap Map of all registry items.
+ * @param resolvedRegistryItems Map to store resolved items.
+ * @param visitedItemsKeys Set to track visited item keys.
  */
-export async function installRegistryItems(
-  items: Iterable<ResolvedRegistryItem>,
-  registry: Registry,
-  config: UserConfig,
-  shouldWriteChoicesMap: Map<string, boolean>,
-  message: (message: string) => void,
+function resolveRegistryItem(
+  referenceItem: ItemBase,
+  registryItemsMap: Map<string, Item>,
+  resolvedRegistryItems: Map<GeneratedItemKey, ResolvedRegistryItem>,
+  visitedItemsKeys: Set<GeneratedItemKey>,
 ) {
-  for (const item of items) {
-    await installRegistryItem(
-      item,
-      registry,
-      config,
-      shouldWriteChoicesMap,
-      message,
-    )
+  const itemKey = generateItemKey(referenceItem.type, referenceItem.name)
+
+  // Prevent infinite loops check if item already visited
+  if (visitedItemsKeys.has(itemKey)) {
+    return
+  }
+
+  // Mark the item as visited
+  visitedItemsKeys.add(itemKey)
+
+  // Retrieve the full item definition from our registry map
+  const item = registryItemsMap.get(itemKey)
+
+  if (!item) {
+    throw new Error(`Item "${referenceItem.name}" of type "${referenceItem.type}" not found in registry`)
+  }
+
+  // Add the items to the resolved items
+  resolvedRegistryItems.set(itemKey, item)
+
+  // Recurse over the item's dependencies if it has any, iterate and add dependencies to the resolved items
+  if (!('dependencies' in item && item.dependencies)) {
+    return
+  }
+
+  // Check for npm packages
+  if (item.dependencies.npmPackages) {
+    const npmPackagesEntries = Object.entries(item.dependencies.npmPackages)
+
+    for (const [npmPackageName, npmPackageVersion] of npmPackagesEntries) {
+      const npmPackageKey = generateItemKey('npmPackage', npmPackageName)
+
+      resolvedRegistryItems.set(npmPackageKey, {
+        name: npmPackageName,
+        type: 'npmPackage',
+        version: npmPackageVersion,
+      })
+    }
+  }
+
+  if ('components' in item.dependencies && item.dependencies.components) {
+    for (const componentName of item.dependencies.components) {
+      resolveRegistryItem(
+        { name: componentName, type: 'component' },
+        registryItemsMap,
+        resolvedRegistryItems,
+        visitedItemsKeys,
+      )
+    }
+  }
+
+  if ('utilities' in item.dependencies && item.dependencies.utilities) {
+    for (const utilityName of item.dependencies.utilities) {
+      resolveRegistryItem(
+        { name: utilityName, type: 'utility' },
+        registryItemsMap,
+        resolvedRegistryItems,
+        visitedItemsKeys,
+      )
+    }
   }
 }

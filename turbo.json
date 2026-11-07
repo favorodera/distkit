@@ -14,9 +14,15 @@
       "outputs": []
     },
     "lint": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "lint:fix": {
+      "dependsOn": ["^build"],
       "outputs": []
     },
     "test": {
+      "dependsOn": ["^build"],
       "outputs": []
     },
     "dev": {
@@ -32,9 +38,6 @@
     "test:watch": {
       "persistent": true,
       "cache": false
-    },
-    "postinstall": {
-      "outputs": [".nuxt/**"]
     },
     "prepublishOnly": {
       "outputs": []

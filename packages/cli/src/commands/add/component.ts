@@ -55,13 +55,15 @@ export function component() {
       spin.stop('Registry parsed and validated')
 
       spin.start('Resolving registry items')
-      const rawComponents = components.map(name => ({
-        name,
-        type: 'component' as const,
-      }))
+      const rawComponents = components.map((name) => {
+        return {
+          name,
+          type: 'component' as const,
+        }
+      })
       const resolvedItems = resolveRegistryItems(rawComponents, registry)
 
-      const itemsToInstall: Array<ResolvedRegistryItem> = resolvedItems.values().toArray()
+      const itemsToInstall: ResolvedRegistryItem[] = resolvedItems.values().toArray()
       spin.stop('Resolved registry items')
 
       const shouldWriteChoices = await confirmItemsFilesOverwrite(itemsToInstall, userConfig)

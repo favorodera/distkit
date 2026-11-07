@@ -35,21 +35,21 @@
     "access": "restricted"
   },
   "engines": {
-    "node": ">=22.0.0",
-    "pnpm": ">=11.0.0"
+    "node": ">=22.0.0"
   },
   "scripts": {
     "build": "tsdown",
     "dev": "tsdown --watch",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "pnpm run build",
-    "lint": "eslint . --fix"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@distkit/cli": "workspace:*"
   },
   "devDependencies": {
-    "@favorodera/eslint-config": "catalog:tooling",
-    "tsdown": "catalog:tooling"
+    "@favorodera/eslint-config": "catalog:",
+    "tsdown": "catalog:"
   }
 }

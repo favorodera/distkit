@@ -1,13 +1,23 @@
-import { factory } from '@favorodera/eslint-config'
+import { defineConfig } from '@favorodera/eslint-config'
 
-export default factory({
-  pnpm: false,
+export default defineConfig({
+  css: false,
+  javascript: {
+    overrides: {
+      'no-await-in-loop': 'off',
+    },
+  },
   tailwind: false,
+  typescript: {
+    overrides: {
+      'new-cap': ['off'],
+    },
+  },
   vue: false,
 })
   .append({
-    files: ['**/*.ts'],
+    files: ['package.json'],
     rules: {
-      'new-cap': ['off'],
+      'jsonc/array-bracket-newline': 'off',
     },
   })

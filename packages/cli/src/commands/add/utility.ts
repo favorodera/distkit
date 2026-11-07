@@ -55,13 +55,15 @@ export function utility() {
       spin.stop('Registry parsed and validated')
 
       spin.start('Resolving registry items')
-      const rawUtilities = utilities.map(name => ({
-        name,
-        type: 'utility' as const,
-      }))
+      const rawUtilities = utilities.map((name) => {
+        return {
+          name,
+          type: 'utility' as const,
+        }
+      })
       const resolvedItems = resolveRegistryItems(rawUtilities, registry)
 
-      const itemsToInstall: Array<ResolvedRegistryItem> = resolvedItems.values().toArray()
+      const itemsToInstall: ResolvedRegistryItem[] = resolvedItems.values().toArray()
       spin.stop('Resolved registry items')
 
       const shouldWriteChoices = await confirmItemsFilesOverwrite(itemsToInstall, userConfig)

@@ -4,11 +4,6 @@
   <p>A minimal registry and CLI for distributing open code. Fork it and build your own.</p>
 
   <p>
-    <a href="./LICENSE"><img src="https://img.shields.io/github/license/favorodera/distkit.svg?style=plastic&label=License" alt="License"></a>
-    <img alt="Version" src="https://img.shields.io/github/package-json/v/favorodera/distkit?style=plastic&label=Version">
-  </p>
-
-  <p>
     <a href="./packages/core"><img src="https://img.shields.io/badge/Core-blue?style=plastic" alt="Distkit Core"></a>
     <a href="./packages/schema"><img src="https://img.shields.io/badge/Schema-blue?style=plastic" alt="Distkit Schema"></a>
     <a href="./packages/cli"><img src="https://img.shields.io/badge/CLI-blue?style=plastic" alt="Distkit CLI"></a>

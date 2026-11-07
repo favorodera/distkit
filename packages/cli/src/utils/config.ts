@@ -4,6 +4,22 @@ import type { UserConfig } from '../types'
 import { userConfigFileBaseName } from './constants'
 
 /**
+ * Generates a user configuration file.
+ * @param config The user configuration.
+ * @returns The user configuration file content.
+ */
+export function generateUserConfig(config: UserConfig) {
+  const userConfigContent = JSON5.stringify(config, {
+    quote: `'`,
+    space: 2,
+  })
+
+  return `import { defineConfig } from '@distkit/core'
+
+export default defineConfig(${userConfigContent})`
+}
+
+/**
  * Loads the user configuration from the current working directory or its parents.
  * @returns The user configuration.
  * @throws Error if the user configuration file cannot be found.
@@ -21,20 +37,4 @@ export async function loadUserConfig() {
   }
 
   return userConfig.config
-}
-
-/**
- * Generates a user configuration file.
- * @param config The user configuration.
- * @returns The user configuration file content.
- */
-export function generateUserConfig(config: UserConfig) {
-  const userConfigContent = JSON5.stringify(config, {
-    quote: `'`,
-    space: 2,
-  })
-
-  return `import { defineConfig } from '@distkit/core'
-
-export default defineConfig(${userConfigContent})`
 }
