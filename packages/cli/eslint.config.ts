@@ -2,6 +2,11 @@ import { defineConfig } from '@favorodera/eslint-config'
 
 export default defineConfig({
   css: false,
+  javascript: {
+    overrides: {
+      'no-await-in-loop': 'off',
+    },
+  },
   tailwind: false,
   typescript: {
     overrides: {
@@ -9,11 +14,6 @@ export default defineConfig({
     },
   },
   vue: false,
-  javascript:{
-    overrides:{
-      'no-await-in-loop':'off'
-    }
-  }
 })
   .append({
     files: ['package.json'],
