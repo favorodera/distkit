@@ -14,7 +14,9 @@ describe('resolveItemInstallDir', () => {
   })
 
   it('throws for unsupported types', () => {
-    expect(() => resolveItemInstallDir('template' as 'component', mockUserConfig))
+    expect(() => {
+      return resolveItemInstallDir('template' as 'component', mockUserConfig)
+    })
       .toThrow('Cannot resolve install directory for "template"')
   })
 })

@@ -14,7 +14,9 @@ describe('resolveRegistryNameToSource', () => {
   })
 
   it('throws when registry is not configured', () => {
-    expect(() => resolveRegistryNameToSource('missing', mockUserConfig))
+    expect(() => {
+      return resolveRegistryNameToSource('missing', mockUserConfig)
+    })
       .toThrow('Registry "missing" not found. Please add it to your config')
   })
 })
@@ -98,10 +100,14 @@ describe('resolveRegistryItems', () => {
       'component:icon',
       'component:button',
       'npmPackage:@iconify/vue',
-    ].toSorted((keyA, keyB) => keyA.localeCompare(keyB))
+    ].toSorted((keyA, keyB) => {
+      return keyA.localeCompare(keyB)
+    })
 
     // eslint-disable-next-line unicorn/prefer-iterator-to-array
-    const actualKeys = [...result.keys()].toSorted((keyA, keyB) => keyA.localeCompare(keyB))
+    const actualKeys = [...result.keys()].toSorted((keyA, keyB) => {
+      return keyA.localeCompare(keyB)
+    })
 
     expect(actualKeys).toStrictEqual(expectedKeys)
   })
@@ -150,14 +156,16 @@ describe('resolveRegistryItems', () => {
   })
 
   it('throws when item is not in the registry', () => {
-    expect(() => resolveRegistryItems(
-      [
-        {
-          name: 'missing',
-          type: 'component',
-        },
-      ],
-      mockRegistry,
-    )).toThrow('Item "missing" of type "component" not found in registry')
+    expect(() => {
+      return resolveRegistryItems(
+        [
+          {
+            name: 'missing',
+            type: 'component',
+          },
+        ],
+        mockRegistry,
+      )
+    }).toThrow('Item "missing" of type "component" not found in registry')
   })
 })

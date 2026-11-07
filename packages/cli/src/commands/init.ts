@@ -31,47 +31,59 @@ export async function init() {
 
       // Prompt user for config choices before any actions
       const userConfigChoices = await group({
-        components: () => group({
-          dir: () => text({
-            initialValue: 'src/components',
-            message: 'Where should components be located? (relative to project root)',
-            validate(value) {
-              if (!value) {
-                return 'Components directory is required.'
-              }
+        components: () => {
+          return group({
+            dir: () => {
+              return text({
+                initialValue: 'src/components',
+                message: 'Where should components be located? (relative to project root)',
+                validate(value) {
+                  if (!value) {
+                    return 'Components directory is required.'
+                  }
+                },
+              })
             },
-          }),
-          import: () => text({
-            initialValue: '@/components',
-            message: 'What should the import alias for components be?',
-            validate(value) {
-              if (!value) {
-                return 'Components import alias is required.'
-              }
+            import: () => {
+              return text({
+                initialValue: '@/components',
+                message: 'What should the import alias for components be?',
+                validate(value) {
+                  if (!value) {
+                    return 'Components import alias is required.'
+                  }
+                },
+              })
             },
-          }),
-        }),
+          })
+        },
 
-        utilities: () => group({
-          dir: () => text({
-            initialValue: 'src/utils',
-            message: 'Where should utilities be located? (relative to project root)',
-            validate(value) {
-              if (!value) {
-                return 'Utilities directory is required.'
-              }
+        utilities: () => {
+          return group({
+            dir: () => {
+              return text({
+                initialValue: 'src/utils',
+                message: 'Where should utilities be located? (relative to project root)',
+                validate(value) {
+                  if (!value) {
+                    return 'Utilities directory is required.'
+                  }
+                },
+              })
             },
-          }),
-          import: () => text({
-            initialValue: '@/utils',
-            message: 'What should the import alias for utilities be?',
-            validate(value) {
-              if (!value) {
-                return 'Utilities import alias is required.'
-              }
+            import: () => {
+              return text({
+                initialValue: '@/utils',
+                message: 'What should the import alias for utilities be?',
+                validate(value) {
+                  if (!value) {
+                    return 'Utilities import alias is required.'
+                  }
+                },
+              })
             },
-          }),
-        }),
+          })
+        },
       }, {
         onCancel: () => {
           cancel('Operation cancelled.')
@@ -117,10 +129,12 @@ export async function init() {
 
       spin.start('Resolving registry dependencies')
       spin.message('Resolving utilities dependencies')
-      const rawUtilities = (registry?.dependencies?.utilities || []).map(name => ({
-        name,
-        type: 'utility' as const,
-      }))
+      const rawUtilities = (registry?.dependencies?.utilities || []).map((name) => {
+        return {
+          name,
+          type: 'utility' as const,
+        }
+      })
       const resolvedUtilities = resolveRegistryItems(rawUtilities, registry)
       spin.message('Resolved utilities dependencies')
 
@@ -138,7 +152,7 @@ export async function init() {
       }
       spin.message('Resolved npm packages dependencies')
 
-      const itemsToInstall: Array<ResolvedRegistryItem> = [...resolvedUtilities.values(), ...resolvedNpmPackages.values()]
+      const itemsToInstall: ResolvedRegistryItem[] = [...resolvedUtilities.values(), ...resolvedNpmPackages.values()]
       spin.stop(`Resolved registry dependencies`)
 
       const registryDependenciesShouldWriteChoices = await confirmItemsFilesOverwrite(resolvedUtilities.values(), userConfig)

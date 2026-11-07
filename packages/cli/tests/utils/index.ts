@@ -80,5 +80,7 @@ export const mockRegistry = {
  * @returns The registry item.
  */
 export function getRegistryItem(name: typeof mockRegistry.items[number]['name'], type: ItemType) {
-  return mockRegistry.items.find(item => item.name === name && item.type === type)
+  return mockRegistry.items.find((item) => {
+    return item.name === name && item.type === type
+  })
 }

@@ -1,8 +1,8 @@
 import { defineConfig } from '@favorodera/eslint-config'
 
 export default defineConfig({
-  ignores: ['playground/', 'packages/'],
   css: false,
+  ignores: ['playground/', 'packages/'],
   perfectionist: {
     settings: {
       tsconfig: {

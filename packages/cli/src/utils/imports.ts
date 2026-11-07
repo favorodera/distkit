@@ -12,10 +12,14 @@ export function rewriteImports(content: string, config: UserConfig) {
   return content
     .replaceAll(
       /(['"])@distkit\/components\/([^'"]+)\1/g,
-      (_, quote, path) => `${quote}${config.components.import}/${path}${quote}`,
+      (_, quote, path) => {
+        return `${quote}${config.components.import}/${path}${quote}`
+      },
     )
     .replaceAll(
       /(['"])@distkit\/utilities\/([^'"]+)\1/g,
-      (_, quote, path) => `${quote}${config.utilities.import}/${path}${quote}`,
+      (_, quote, path) => {
+        return `${quote}${config.utilities.import}/${path}${quote}`
+      },
     )
 }

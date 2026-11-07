@@ -1,13 +1,19 @@
 import { defineConfig } from '@favorodera/eslint-config'
 
 export default defineConfig({
+  css: false,
   tailwind: false,
-  vitest: false,
-  css:false,
-  vue: false,
-  typescript:{
-    overrides:{
+  typescript: {
+    overrides: {
       'new-cap': ['off'],
-    }
-  }
+    },
+  },
+  vitest: false,
+  vue: false,
 })
+  .append({
+    files: ['package.json'],
+    rules: {
+      'jsonc/array-bracket-newline': 'off',
+    },
+  })

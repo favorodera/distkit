@@ -28,7 +28,7 @@
     }
   },
   "scripts": {
-     "dev": "turbo dev",
+    "dev": "turbo dev",
     "dev:all": "turbo dev play",
     "play": "turbo play",
     "build": "turbo build",
@@ -47,9 +47,9 @@
     "@favorodera/eslint-config": "catalog:",
     "@types/node": "catalog:",
     "eslint": "catalog:",
+    "pkg-pr-new": "catalog:",
     "relizy": "catalog:",
     "turbo": "catalog:",
-    "typescript": "catalog:",
-    "pkg-pr-new":"catalog:"
+    "typescript": "catalog:"
   }
 }

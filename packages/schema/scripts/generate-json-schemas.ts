@@ -67,7 +67,9 @@ spin.stop('JSON schemas generation tasks prepared')
 await tasks([...generationTasks])
 
 note(
-  TSSchemasEntries.map(TSSchemaEntry => toRelativePath(TSSchemaEntry.jsonSchemaFilePath)).join('\n'),
+  TSSchemasEntries.map((TSSchemaEntry) => {
+    return toRelativePath(TSSchemaEntry.jsonSchemaFilePath)
+  }).join('\n'),
   `${TSSchemasEntries.length} JSON schemas generated`,
 )
 
