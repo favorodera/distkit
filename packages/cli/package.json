@@ -36,7 +36,7 @@
     "access": "restricted"
   },
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=22.23.5"
   },
   "scripts": {
     "build": "tsdown",
